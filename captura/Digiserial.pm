@@ -14,10 +14,10 @@ sub write_config_file {
 
     my $self = shift;
     my $serial = new Device::SerialPort('/dev/ttyS0');
-    $serial->baudrate(9600);
+    $serial->baudrate(44100);
     $serial->parity('none');
     $serial->databits(8);
-    $serial->stopbits(1);
+    $serial->stopbits(0);
     $serial->write_settings;
     $serial->save('/tmp/ttyS0.conf');
     $serial->close;
@@ -31,9 +31,10 @@ sub start {
     $self->write_config_file unless -f '/tmp/ttyS0.conf';
     my $serial = new Device::SerialPort('/tmp/ttyS0.conf') or die
 	"Can't open SerialPort $!\n";
-    $serial->write('Lamanna' . chr(13));
     $serial->read_char_time(0);
     $serial->read_const_time(100);
+
+    $serial->write('Lamanna' . chr(13));
 
     my $TIMES = 6000;
     my $timeout = $TIMES;
@@ -48,6 +49,7 @@ sub start {
 		#$self->send($self->transform($saw));
 		$self->send($saw);
 		$serial->write('@@@');
+		
 		last;
 	    }
 
