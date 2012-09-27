@@ -4,7 +4,8 @@ use strict;
 use warnings;
 use IO::Socket::UNIX qw( SOCK_STREAM SOMAXCONN );
 
-my $socket_path = '/tmp/wibble';
+#my $socket_path = '/tmp/wibble';
+my $socket_path = '/tmp/digicheck2.socket';
 unlink($socket_path);
 
 my $listner = IO::Socket::UNIX->new(
