@@ -45,7 +45,8 @@ sub start {
 	if ($count > 0) {
 	    
 	    if ($self->verified($saw)) {
-		$self->send($self->transform($saw));
+		#$self->send($self->transform($saw));
+		$self->send($saw);
 		$serial->write("@ @ @"); ## See if separated with spaces
 		last;
 	    }
