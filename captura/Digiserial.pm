@@ -44,9 +44,11 @@ sub start {
 	
 	if ($count > 0) {
 	    
-	    $self->send($self->transform($saw));
-	    $serial->write("@ @ @"); ## See if separated with spaces
-	    last;
+	    if ($self->verified($saw)) {
+		$self->send($self->transform($saw));
+		$serial->write("@ @ @"); ## See if separated with spaces
+		last;
+	    }
 
 	} else {
 
@@ -61,7 +63,19 @@ sub start {
     }
 
 }
+
+
+
+sub verified {
+
+    my $self = shift;
+    my $val = shift;
+    my @chars = (192, 193 ,194, 195, 196, 197, 198, 199);
+    return (hex($val) ~~ @chars ? 0 : 1);
+}
 	    
+
+
 sub transform {
 
     my $self = shift;
@@ -81,6 +95,7 @@ sub transform {
     return $tabla{hex($char)};
 	
 }
+
 
 
 sub send {
