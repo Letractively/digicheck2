@@ -8,7 +8,7 @@ package Digiserial;
 
 use Mouse;
 use Device::SerialPort;
-use IO::Socket::UNIX qw(SOCKET_STREAM);
+use IO::Socket::UNIX;
 
 sub write_config_file {
 
@@ -21,7 +21,7 @@ sub write_config_file {
     $serial->write_settings;
     $serial->save('/tmp/ttyS0.conf');
     $serial->close;
-    warn "Created configuration for SerialPort\n";
+    warn "Created configuration for SerialPort ttyS0\n";
 
 }
 
@@ -31,7 +31,7 @@ sub start {
     $self->write_config_file unless -f '/tmp/ttyS0.conf';
     my $serial = new Device::SerialPort('/tmp/ttyS0.conf') or die
 	"Can't open SerialPort $!\n";
-    $serial->write('0x4C0x610x6D0x610x6E0x6E0x610x0A0x0D');
+    $serial->write("Lamanna");
     $serial->read_char_time(0);
     $serial->read_const_time(100);
 
@@ -45,7 +45,7 @@ sub start {
 	if ($count > 0) {
 	    
 	    $self->send($self->transform($saw));
-	    $serial->write('0x400x400x40'); ## See if separated with spaces
+	    $serial->write("@ @ @"); ## See if separated with spaces
 	    last;
 
 	} else {
