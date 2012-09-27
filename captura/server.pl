@@ -22,5 +22,7 @@ my $socket = $listner->accept()
 
 chomp( my $line = <$socket> );
 print "Client Sez: $line\n";
+print "hex ", hex $line, "\n";
+print "ord ", ord $line, "\n";
 #print $socket "Same to ya, fella\n";
 }
