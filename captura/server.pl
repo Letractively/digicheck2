@@ -21,6 +21,6 @@ my $socket = $listner->accept()
 
 
 chomp( my $line = <$socket> );
-print qq{Client Sez "$line"\n};
-print $socket "Same to ya, fella\n";
+print "Client Sez: $line\n";
+#print $socket "Same to ya, fella\n";
 }
