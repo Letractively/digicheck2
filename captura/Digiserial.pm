@@ -31,7 +31,7 @@ sub start {
     $self->write_config_file unless -f '/tmp/ttyS0.conf';
     my $serial = new Device::SerialPort('/tmp/ttyS0.conf') or die
 	"Can't open SerialPort $!\n";
-    $serial->write("Lamanna");
+    $serial->write('Lamanna' . chr(13));
     $serial->read_char_time(0);
     $serial->read_const_time(100);
 
@@ -47,7 +47,7 @@ sub start {
 	    if ($self->verified($saw)) {
 		#$self->send($self->transform($saw));
 		$self->send($saw);
-		$serial->write("@ @ @"); ## See if separated with spaces
+		$serial->write('@@@');
 		last;
 	    }
 
