@@ -17,7 +17,7 @@ my $grab = new Video::Capture::V4l
 #     or die "No pude abrir dispositivo $!";
 
 # the following initializes the camera for NTSC 
-my $channel = $grab->channel(3); #1 is composite 0 is for tuner 
+my $channel = $grab->channel(0); #1 is composite 0 is for tuner 
 $channel->norm(1);
 $channel->set;
 
