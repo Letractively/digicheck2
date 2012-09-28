@@ -36,6 +36,8 @@ sub start {
 
     $serial->write('Lamanna' . chr(13));
 
+    my $buffer = '';
+
     my $TIMES = 6000;
     my $timeout = $TIMES;
 
@@ -43,15 +45,17 @@ sub start {
 
 	my ($count, $saw) = $serial->read(255);
 	
+	chomp $saw;
+
 	if ($count > 0) {
-	    
-	    if ($self->verified($saw)) {
-		#$self->send($self->transform($saw));
-		$self->send($saw);
-		$serial->write('@@@');
-		
-		last;
-	    }
+	    $buffer .= $saw;
+	    last if $self->verified($buffer);
+	}
+
+	print 'dice: ', $buffer, "\n";
+	print 'hex: ', hex $buffer, "\n";
+	print 'ord: ', ord $buffer, "\n";
+	print 'chr: ', chr $buffer, "\n";
 
 	} else {
 
@@ -74,7 +78,7 @@ sub verified {
     my $self = shift;
     my $val = shift;
     my @chars = (192, 193 ,194, 195, 196, 197, 198, 199);
-    return (hex($val) ~~ @chars ? 0 : 1);
+    return (hex($val) ~~ @chars ? 1 : 0);
 }
 	    
 
