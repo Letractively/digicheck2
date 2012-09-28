@@ -42,33 +42,35 @@ sub start {
     my $timeout = $TIMES;
 
     while ($timeout > 0) {
-
+	
 	my ($count, $saw) = $serial->read(255);
 	
 	chomp $saw;
-
+	
 	if ($count > 0) {
 	    $buffer .= $saw;
-	    last if $self->verified($buffer);
 	}
-
-	print 'dice: ', $buffer, "\n";
-	print 'hex: ', hex $buffer, "\n";
-	print 'ord: ', ord $buffer, "\n";
-	print 'chr: ', chr $buffer, "\n";
-
-	} else {
-
-	    $timeout--;
-
-	}
-
+	
+	if ($self->verified($buffer)) {
+	    
+	    print 'dice: ', $buffer, "\n";
+	    print 'hex: ', hex $buffer, "\n";
+	    print 'ord: ', ord $buffer, "\n";
+	    print 'chr: ', chr $buffer, "\n";
+	    last;
+	    }
+	    
+	    
+	    } else {
+		$timeout--;
+	    }
+	
 	if ($timeout == 0) {
 	    warn "Nothing in 10 minutes\n";
 	}
-
+	
     }
-
+    
 }
 
 
