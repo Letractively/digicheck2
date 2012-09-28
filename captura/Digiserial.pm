@@ -58,12 +58,10 @@ sub start {
 	    print 'ord: ', ord $buffer, "\n";
 	    print 'chr: ', chr $buffer, "\n";
 	    last;
-	    }
-	    
-	    
-	    } else {
-		$timeout--;
-	    }
+	    	    
+	} else {
+	    $timeout--;
+	}
 	
 	if ($timeout == 0) {
 	    warn "Nothing in 10 minutes\n";
