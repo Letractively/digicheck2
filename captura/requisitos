@@ -5,4 +5,11 @@ libvideo-capture-v4l-perl
 libimager-perl
 libmouse-perl
 libdevice-serialport-perl
+libdbi-perl
+libdbd-pg-perl
+
+
+postgresql
+
+libmojolicious-perl
 
