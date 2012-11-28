@@ -1,0 +1,59 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Digicheck: Resultados</title>
+	<link rel="stylesheet" type="text/css" href="css/bayco.css">
+
+</head>
+
+<body>
+
+<div id=cabecera>
+	<img src="img/bayco2.png" height="75px;">
+</div>
+
+<div id=contenido>
+<h1>Resultados</h1>
+<hr>
+
+<table id="box-table-a" summary="Listado de busqueda">
+    <thead>
+    	<tr>
+        	<th scope="col">Fecha/Hora</th>
+            <th scope="col">Cheque</th>
+            <th scope="col">Cédula</th>
+            <th scope="col">Foto</th>
+            <th scope="col"> </th>
+        </tr>
+    </thead>
+    <tbody>
+
+% foreach (0 .. $#$ref) {
+% my $dt = $dater->parse_timestamp($ts->[$_]);
+    	<tr>
+        	<td><%= $dt->dmy %></br> <%= $dt->hms %></td>
+            <td><img src="<%= $self->url_for("/thumbnail/$ref->[$_]/cam1.jpg") %>"</td>
+            <td><img src="<%= $self->url_for("/thumbnail/$ref->[$_]/cam2.jpg") %>"</td>
+            <td><img src="<%= $self->url_for("/thumbnail/$ref->[$_]/cam3.jpg") %>"</td>
+	    <td><a href="<%= $self->url_for("/show/$ref->[$_]") %>">Detalle</a></td>
+        </tr>
+% }
+
+    </tbody>
+</table>
+
+
+</div>
+
+<div id=pie>
+<hr>
+Bayco © 2012
+</div>
+
+</div>
+
+
+</body>
+</html>

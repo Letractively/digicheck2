@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Digicheck: Detalle del Registro</title>
+	<link rel="stylesheet" type="text/css" href="/css/bayco.css">
+
+</head>
+
+<body>
+% use Sys::Hostname; 
+% my $thishost = hostname;
+
+<div id=cabecera>
+	<img src="/img/bayco2.png" height="75px;">
+</div>
+
+<div id=contenido>
+<h1>Fecha y Hora:</h1>
+
+<div id=fecha ><%= $dia  %> - <%= $hora  %> </div>
+<hr>
+
+<div id="busqueda">
+<a href="<%= $self->url_for("/") %>">  Nueva Búsqueda </a>
+
+<hr>
+
+
+<a href="<%= $self->url_for("/zip/$ref.zip")  %>"><button class="submit" type="button">Descargar .zip</button></a>
+<hr>
+
+</div>
+<table id="box-table-b" summary="Listado de busqueda">
+    <thead>
+        <tr>
+
+            <td colspan="2" >
+<div id=datos>
+		<b>Taquilla:</b> <%= $caja %>
+		<br>
+		<b>Servidor:</b> <%= $thishost %>
+</div>
+		</td>
+	</tr>
+        <tr>
+
+            <td><img id=fotos src="<%= $self->url_for("/picture/$ref/cam1.jpg")  %>"  height="200"> <img id="myimage" border="0" src="/img/si.png" width="30" height="40" /> 
+<br>
+<div id=datos>
+
+<b>Hash MD5:</b> <%= $csum1 %>
+</div>
+  </td>
+            <td><img id=fotos src="<%= $self->url_for("/picture/$ref/cam2.jpg")  %>" height="200"> <img id="myimage" border="0" src="/img/si.png" width="30" height="40" /> 
+<br>
+<div id=datos>
+
+<b>Hash MD5:</b> <%= $csum2 %>
+</div>
+</td>
+        </tr>
+        <tr>
+
+            <td colspan="2" ><img id=cheque src="<%= $self->url_for("/picture/$ref/cam3.jpg")  %>" height="200"> <img id="myimage" border="0" src="/img/si.png"  width="30" height="40" /> 
+<br>
+<div id=datos>
+
+<b>Hash MD5:</b> <%= $csum3 %>
+</div>
+</td>
+        </tr>
+    </tbody>
+</table>
+
+
+</div>
+
+
+<div id=pie>
+<hr>
+Bayco © 2012
+</div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+% use Sys::Hostname; 
+% my $thishost = hostname;
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Digicheck en <%= $thishost %></title>
+      <link rel="stylesheet" type="text/css" href="/css/bayco.css">
+	<!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/> -->
+	<!-- 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> -->
+	<!-- 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script> -->
+
+	<link href="js/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+
+	<script>
+	  $(document).ready(function() {
+	  $("#datepicker").datepicker();
+	  });
+	</script>
+
+      </head>
+
+      <body>
+
+	<div id=cabecera>
+	  <img src="/img/bayco2.png" height="75px;">
+	  </div>
+
+	  <div id=contenido>
+	    <h1>Búsqueda en <%= $thishost %></h1>
+	    <hr>
+
+	      <div id=box>
+
+		<form class="contact_form" action="/cheque" method="post">
+		  <ul>
+		    <li>
+		      <label  for="texto">Nº de Cheque</label>
+		      <div class=styled-select>
+			<input type="text" name="numero" />
+		      </div>
+		    </li>
+		    <li>
+		      <button class="submit" type="submit">Buscar Cheque</button>
+		    </li>
+		  </ul>
+		</form>
+
+		<hr>
+		  <hr>
+
+		
+		<form class="contact_form" action="/subset" method="post">
+		  <ul>
+		    <li>
+		      <label for="fecha">Fecha:</label>
+		      <div class=styled-select >
+			<input name ="fecha" id="datepicker" required placeholder="Click para seleccionar fecha" />
+		      </div>
+
+		    </li>
+		    <!-- <li> -->
+		    <!--     <label  for="email">hh:mm:ss - Caja</label> -->
+		    <!-- 	<div class=styled-select > -->
+		    <!-- 	<SELECT type="text" required placeholder="Caja"> -->
+		    <!-- 		<OPTION VALUE="valor">valor</OPTION> -->
+		    <!-- 	</SELECT> -->
+		    <!-- 	</div> -->
+		    <!-- </li> -->
+		    <li>
+		      <label for="website">Taquilla:</label>
+		      <div class=styled-select >
+			<SELECT name="caja" type="text" required placeholder="Cajero">
+			  <OPTION VALUE="todas">todas</OPTION>
+			  <OPTION VALUE=1>1</OPTION>
+			  <OPTION VALUE=2>2</OPTION>
+			  <OPTION VALUE=3>3</OPTION>
+			  <OPTION VALUE=4>4</OPTION>
+			  <OPTION VALUE=5>5</OPTION>
+			  <OPTION VALUE=6>6</OPTION>
+			  <OPTION VALUE=7>7</OPTION>
+			  <OPTION VALUE=8>8</OPTION>
+			</SELECT>
+		      </div>
+		    </li>
+		    <li>
+		      <button class="submit" type="submit">Buscar Fecha</button>
+		      <!--          <button class="submit" type="submit">Buscar</button>  -->
+		    </li>
+		  </ul>
+		</form>
+	      </div>
+	      
+	      <div id=pie>
+		<hr>
+		  Bayco © 2012
+		</div>
+		
+	      </div>
+	    </body>
+	  </html>
+      
