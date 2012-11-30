@@ -1,8 +1,8 @@
-## Para PgSQL
+-- Para PgSQL
 
-# createuser <digick>
+-- createuser <digick>
 
-# createdb <digicheck>
+-- createdb <digick>
 
 CREATE TABLE cam1 (
        id SERIAL PRIMARY KEY,
@@ -34,9 +34,9 @@ CREATE TABLE record (
        ts TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP);
 
 
-## Querys
+-- Querys
 
-SELECT id FROM record WHERE ts = $date AND caja = $caja;
+-- SELECT id FROM record WHERE ts = $date AND caja = $caja;
 
 
 
