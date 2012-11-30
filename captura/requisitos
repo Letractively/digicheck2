@@ -12,4 +12,5 @@ libdbd-pg-perl
 postgresql
 
 libmojolicious-perl
-
+libdatetime-format-pg-perl
+libarchive-zip-perl

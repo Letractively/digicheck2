@@ -46,7 +46,7 @@ hr {
    width: 230px;
    height: 34px;
    overflow: hidden;
-   background: url(img/down_arrow_select.jpg) no-repeat right #ddd;
+   background: url(/img/down_arrow_select.jpg) no-repeat right #ddd;
 	border: 0px;
 	padding-left: 10px;
 }
@@ -117,7 +117,7 @@ button.submit {
    width: 240px;
    height: 34px;
    overflow: hidden;
-   background: url(img/down_arrow_select.jpg) no-repeat right #ddd;
+   background: url(/img/down_arrow_select.jpg) no-repeat right #ddd;
 }
 
 .styled-select-short {
@@ -125,7 +125,7 @@ button.submit {
    height: 34px;
    display: inline;
    margin-right: 10px;
-   background: url(img/down_arrow_select.jpg) no-repeat right #ddd;
+   background: url(/img/down_arrow_select.jpg) no-repeat right #ddd;
 }
 
 .styled-select-short select {

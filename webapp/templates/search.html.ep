@@ -11,9 +11,9 @@
 	<!-- 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> -->
 	<!-- 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script> -->
 
-	<link href="js/jquery-ui.css" rel="stylesheet" type="text/css"/>
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
+	<link href="/js/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script src="/js/jquery-ui.min.js"></script>
 
 	<script>
 	  $(document).ready(function() {
@@ -75,14 +75,14 @@
 		      <div class=styled-select >
 			<SELECT name="caja" type="text" required placeholder="Cajero">
 			  <OPTION VALUE="todas">todas</OPTION>
-			  <OPTION VALUE=1>1</OPTION>
-			  <OPTION VALUE=2>2</OPTION>
-			  <OPTION VALUE=3>3</OPTION>
-			  <OPTION VALUE=4>4</OPTION>
-			  <OPTION VALUE=5>5</OPTION>
-			  <OPTION VALUE=6>6</OPTION>
-			  <OPTION VALUE=7>7</OPTION>
-			  <OPTION VALUE=8>8</OPTION>
+			  <OPTION VALUE="1">1</OPTION>
+			  <OPTION VALUE="2">2</OPTION>
+			  <OPTION VALUE="3">3</OPTION>
+			  <OPTION VALUE="4">4</OPTION>
+			  <OPTION VALUE="5">5</OPTION>
+			  <OPTION VALUE="6">6</OPTION>
+			  <OPTION VALUE="7">7</OPTION>
+			  <OPTION VALUE="8">8</OPTION>
 			</SELECT>
 		      </div>
 		    </li>

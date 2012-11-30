@@ -1,9 +1,9 @@
 #!/bin/bash
 
-su -c "createuser -S -R -l -d -U postgres digick" postgres
+su -l postgres -c "createuser -S -R -l -d -U postgres digick"
 
-createdb -U digick digick
+su  -l postgres -c "createdb -O digick digick"
 
-psql -f layout.sql digick digick
+su -l postgres -c "cd /home/bayco/digicheck/sql/; psql -f layout.sql digick"
 
 
