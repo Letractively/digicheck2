@@ -23,7 +23,7 @@ post '/subset' => sub {
 
     my $pg = DigiDBD->new;
     my ($ref, $ts) = $pg->get_by_date($date, $caja);
-    $self->render(text => 'error') unless defined($ref);
+    $self->render(text => 'No se encontraron coincidencias.') unless defined($ref);
     $self->stash(
     	ref => $ref,
 	ts   => $ts,

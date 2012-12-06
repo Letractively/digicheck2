@@ -17,11 +17,11 @@ sub get_by_date {
 
     my $query = "SELECT id, ts FROM record WHERE date_trunc('day', ts) = ?";
 
-    $query .= "AND caja = ?" unless defined($caja);
+    $query .= " AND caja = ?" unless ($caja eq "todas");
     
     my $get_id = $dbh->prepare($query);
 
-    defined($caja) ? $get_id->execute($date) : $get_id->execute($date,$caja);
+    ($caja eq "todas") ? $get_id->execute($date) : $get_id->execute($date,$caja);
 
     my (@ref, @ts);
 
