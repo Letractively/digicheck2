@@ -34,7 +34,7 @@ sub start {
     $serial->read_char_time(0);
     $serial->read_const_time(100);
 
-    $serial->write('Lamanna' . chr(13));
+    $serial->write('Lamanna' . chr(0xa) . chr(0xd));
 
     my $buffer = '';
 
@@ -78,7 +78,7 @@ sub verified {
     my $self = shift;
     my $val = shift;
     my @chars = (192, 193 ,194, 195, 196, 197, 198, 199);
-    return (hex($val) ~~ @chars ? 1 : 0);
+    return (ord($val) ~~ @chars ? 1 : 0);
 }
 	    
 
@@ -99,7 +99,7 @@ sub transform {
 	199 => '8'
 	);
     
-    return $tabla{hex($char)};
+    return $tabla{ord($char)};
 	
 }
 

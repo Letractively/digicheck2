@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use IO::Socket::UNIX qw( SOCK_STREAM );
 
-my $socket_path = '/tmp/wibble';
+my $socket_path = '/tmp/digicheck2.socket';
 
 my $socket = IO::Socket::UNIX->new(
    Type => SOCK_STREAM,
