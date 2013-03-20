@@ -4,4 +4,8 @@ use Digiserial;
 
 my $obj = Digiserial->new;
 
-$obj->start;
+while (1) {
+
+$obj->start('/dev/ttyS0');
+
+}
