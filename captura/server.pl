@@ -81,7 +81,7 @@ if ($line) {
 
     my $pic2 = &jpeg($frame2);
 
-    $obj->save2pg($pic0, $pic1, $pic2, $caja);
+    $obj->save2pg($$pic0, $$pic1, $$pic2, $caja);
 
     
 }
