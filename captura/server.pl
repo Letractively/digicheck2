@@ -58,7 +58,7 @@ if ($line) {
     print "Client Sez: $line\n";
     
     for my $f (0, 1) {
-	my $frame0 = $grab0->capture(1 - $f, 640, 480);
+	$frame0 = $grab0->capture(1 - $f, 640, 480);
 	$grab0->sync($f) or die "unable to sync";
     }
 #    &guarda('0-' . $line);
@@ -66,7 +66,7 @@ if ($line) {
     my $pic0 = &jpeg_roted($frame0);
 
     for my $f (0, 1) {
-	my $frame1 = $grab1->capture(1 - $f, 640, 480);
+	$frame1 = $grab1->capture(1 - $f, 640, 480);
 	$grab1->sync($f) or die "unable to sync";
     }
 #    &guarda('1-' . $line);
@@ -74,7 +74,7 @@ if ($line) {
     my $pic1 = &jpeg($frame1);
 
     for my $f (0, 1) {
-	my $frame2 = $grab2->capture(1 - $f, 640, 480);
+	$frame2 = $grab2->capture(1 - $f, 640, 480);
 	$grab2->sync($f) or die "unable to sync";
     }
 #    &guarda('2-' . $line);
