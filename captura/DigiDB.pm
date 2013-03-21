@@ -31,11 +31,11 @@ sub save2pg {
     
     $q3->bind_param(1, undef, {pg_type => PG_BYTEA});
 
-    $q1->execute($data1, md5_hex($data0));
+    $q1->execute($data0, md5_hex($data0));
     my $ref0 = $dbh->last_insert_id(undef, undef, 'cam1', undef);
-    $q2->execute($data2, md5_hex($data1));
+    $q2->execute($data1, md5_hex($data1));
     my $ref1 = $dbh->last_insert_id(undef, undef, 'cam2', undef);
-    $q3->execute($data3, md5_hex($data2));
+    $q3->execute($data2, md5_hex($data2));
     my $ref2 = $dbh->last_insert_id(undef, undef, 'cam3', undef);
     
     $q4->execute($ref0, $ref1, $ref2, $caja);
