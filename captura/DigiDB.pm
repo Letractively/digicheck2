@@ -3,7 +3,7 @@ package DigiDB;
 use Mouse;
 use DBI;
 use DBD::Pg qw/:pg_types/;
-use Digest::MD5;
+use Digest::MD5 'md5_hex';
 
 sub save2pg {
     
