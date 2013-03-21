@@ -13,7 +13,7 @@ sub save2pg {
     my $data2 = shift;
     my $caja = shift;
 
-    my $dsn = "DBI:Pg::dbname=digick";
+    my $dsn = "DBI:Pg:dbname=digick";
 
     my $dbh = DBI->connect($dsn, 'digick');
 
