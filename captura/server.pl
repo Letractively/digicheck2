@@ -7,7 +7,9 @@ use IO::Socket::UNIX qw( SOCK_STREAM SOMAXCONN );
 use Imager;
 use DigiDB;
 
-my $frame;
+my $frame0;
+my $frame1;
+my $frame2;
 
 my $grab0 = new Video::Capture::V4l('/dev/video0')
     or die "Unable to open Videodevice: $!";
