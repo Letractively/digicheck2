@@ -48,3 +48,5 @@ sub save2pg {
     $dbh->disconnect;
     
 }
+
+1;
