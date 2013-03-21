@@ -128,7 +128,7 @@ sub jpeg {
     $img->flip( dir => "hv" );
     $img->write( data => \$temp, type => 'jpeg' )
 	or warn $img->errstr;
-    return $temp;
+    return \$temp;
 }
 
 sub jpeg_roted {
@@ -149,5 +149,5 @@ sub jpeg_roted {
     my $img2 = $img->rotate(right=>90);
     $img2->write( data => \$temp, type => 'jpeg' )
 	or warn $img->errstr;   
-    return $temp;
+    return \$temp;
 }
