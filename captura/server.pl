@@ -146,7 +146,7 @@ sub jpeg_roted {
     $img->read( data => $temp, type => 'pnm' )
 	or warn $img->errstr();
     $img->flip( dir => "hv" );
-    my $img2 = $img->rotate(left=>90);
+    my $img2 = $img->rotate(right=>270);
     $img2->write( data => \$temp, type => 'jpeg' )
 	or warn $img->errstr;   
     return \$temp;
