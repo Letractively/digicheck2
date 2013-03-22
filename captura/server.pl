@@ -63,7 +63,7 @@ if ($line) {
     }
 #    &guarda('0-' . $line);
 
-    my $pic0 = &jpeg($frame0);
+    my $pic0 = &jpeg_roted($frame0);
 
     for my $f (0, 1) {
 	$frame1 = $grab1->capture(1 - $f, 640, 480);
@@ -79,7 +79,7 @@ if ($line) {
     }
 #    &guarda('2-' . $line);
 
-    my $pic2 = &jpeg_roted($frame2);
+    my $pic2 = &jpeg($frame2);
 
     $obj->save2pg($$pic0, $$pic1, $$pic2, $caja);
 
