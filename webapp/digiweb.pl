@@ -4,6 +4,7 @@ use Mojolicious::Lite;
 use DateTime::Format::Pg;
 use Imager;
 use Digest::MD5 'md5_hex';
+use lib '/home/bayco/digicheck/trunk/webapp';
 use DigiDBD;
 use DigiZip;
 
@@ -126,4 +127,4 @@ post '/cheque' => sub {
 
 };
 
-app->start;
+app->start();
