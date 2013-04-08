@@ -8,6 +8,16 @@ use lib '/home/bayco/digicheck/trunk/webapp';
 use DigiDBD;
 use DigiZip;
 
+plugin 'basic_auth';
+
+under sub {
+    my $self = shift;
+    return 1 if ($self->basic_auth(
+		     realm => sub {return 1 if "@_" eq 'caroni1 caroniadmin'}
+		 )
+	);
+};
+
 get '/' => sub {
     my $self = shift;
     $self->render(template => 'search');
