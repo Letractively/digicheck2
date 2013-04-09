@@ -53,7 +53,7 @@ $q2->bind_param(1, undef, {pg_type => PG_BYTEA});
 
 $q3->bind_param(1, undef, {pg_type => PG_BYTEA});
 
-foreach (1 .. 100) {
+foreach (1) {
     $q1->execute($data1, md5_hex($data1));
     my $ref1 = $dbh->last_insert_id(undef, undef, 'cam1', undef);
     $q2->execute($data2, md5_hex($data2));
@@ -61,7 +61,7 @@ foreach (1 .. 100) {
     $q3->execute($data3, md5_hex($data3));
     my $ref3 = $dbh->last_insert_id(undef, undef, 'cam3', undef);
     
-    $q4->execute($ref1, $ref2, $ref3, 4);
+    $q4->execute($ref1, $ref2, $ref3, 1);
 
 }
 
