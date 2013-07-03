@@ -1,0 +1,11 @@
+<chapter xml:id="instalacion">
+  <title>Manual de Instalación de Digicheck2</title>
+  <sect1>
+    <title>Preparación del ambiente de instalación</title>
+    <para>
+      Para instalar el software de Digicheck2 en un equipo se debe
+      contar con un ambiente similar al ambiente de producción.
+    </para>
+  </sect1>
+
+</chapter>

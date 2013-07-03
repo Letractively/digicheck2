@@ -1,0 +1,58 @@
+<preface xml:id="acerca">
+  <title>
+    Acerca de este Documento
+  </title>
+  <para>
+    Este documento contiene toda la información técnica relacionada
+    con el desarrollo realizado para BAYCO, C.A.; desde una
+    descripción del proceso de desarrollo, funcionamiento e
+    instalación, hasta el manual para su instalación y principales
+    casos de uso.
+  </para>
+  <para>
+    Se recomienda que las personas que manipulen este sistema de
+    alguna forma <productname>Digicheck2</productname> tengan
+    conocimientos básicos de sistemas tipo
+    <trademark>UNIX</trademark>; muy especialmente en <systemitem
+    class="osname">Debian GNU/Linux</systemitem>, sobre el cual
+    está diseñado.
+  </para>
+  <para>
+    Se hará un gran esfuerzo por explicar detenidamente cada una de
+    las partes esenciales, de manera que las actividades de soporte
+    sean lo más sencillas posible; sin embargo, no podemos ofrecer
+    garantías de que el contenido de este documento sea asimilado
+    correctamente si no se poseen los conocimientos mínimos
+    necesarios.
+  </para>
+  <para>
+    Donde sea conveneinte, se incluirán referencias a otros
+    documentos, generalmente accesibles en la internet, para que los
+    operadores del sistema puedan documentarse en temas que
+    eventualmente no dominen.
+  </para>
+  <para>
+    Convenientemente, nuestros desarrollos emplean tecnologías y
+    estándares abiertos, por lo que no debería ser difícil para
+    cualquier técnico del área informática adquirir los
+    conocimientos necesarios.  
+  </para>
+  <para>
+    Cabe destacar que este sistema incluye una fase de desarrollo
+    que no fue realizada directamente por nosotros. Aunque estamos
+    familiarizados con dicho desarrollo y dimos algunas directivas,
+    nos limitamos a incluir en este documento el informe presentado
+    por el Ing. que efectivamente llevó a cabo el desarrollo. Es
+    responsabilidad de BAYCO, C.A. mantener actualizada dicha
+    documentación y capacitar a los operadores del sistema respecto
+    a ese desarrollo.
+  </para>
+  <para>
+    Es conveniente destacar que este documento, y el producto al que
+    se refiere, han sido hechos ajustados a normativas y realidades
+    venezolanas, por lo que es posible que se usen términos poco
+    comunes en otros países de habla hispana. A pesar de esto, sería
+    sencillo adaptar el sistema a otros casos de uso, de acuerdo a
+    las exigencias de cada cliente.
+  </para>
+</preface> 

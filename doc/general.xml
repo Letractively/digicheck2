@@ -1,0 +1,234 @@
+<chapter xml:id="general"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <title>Aspectos Generales del Sistema</title>
+  
+  <para>
+    A continuación haremos una descripción general del producto,
+    explicando de una manera clara, pero sin entrar en detalles muy
+    técnicos, cómo funciona el software y su interacción con el
+    hardware y periféricos.
+  </para>
+  
+  <sect1>
+    <title>Descripción</title>
+    <para>
+      <productname>Digicheck2</productname> es un sistema de captura,
+      identificación, almacenamiento y búsqueda de imágenes; diseñado
+      con el objetivo principal de mantener registros de ciertas
+      operaciones bancarias y las personas que efectúan dichas
+      operaciones. El caso de uso más común, y para lo que fue
+      pensado, es el cobro de cheques: el portador del cheque presenta
+      su cédula de identidad, la cual es colocada en la base de una
+      torre, próxima al cheque; y tres cámaras localizadas en la torre
+      capturan una imagen del rostro de la persona que cobra el
+      cheque, una de la cédula de identidad y otra del cheque. Estas
+      imágenes se identifican y se almacenan en una base de datos
+      formal.
+    </para>
+    <para>
+      Las torres están conectada a un equipo que llamamos
+      <emphasis>Servidor</emphasis> a través de un cable UTP. El
+      servidor tiene incorporado una tarjeta (ver <xref
+      linkend="informe.carlos"/>) donde se conectan las torres con un
+      conector RJ-45. Cada servidor puede tener hasta un máximo de 8
+      torres conectadas; es decir, cada servidor puede almacenar las
+      transacciones de hasta 8 cajeros.
+    </para>
+    <para>
+      La tarjeta, que llamamos <emphasis>Tarjeta Central</emphasis>,
+      funciona como un <foreignphrase>switch</foreignphrase> que envía
+      la señal de la torre correspondiente cuando es
+      requerido. Además, se establece una comunicación serial (RS-232)
+      para indicar la procedencia de la comunicación, y así
+      identificar las imágenes capturadas. Una vez identificadas, son
+      almacenadas como un objeto binario en la base de datos.
+    </para>
+    <para>
+      Por último, el servidor ejecuta constantemente una pequeña
+      aplicación web que permite buscar y visualizar las imágenes,
+      usando un par de criterios de búsqueda.
+    </para>
+    <para>
+      Para facilitar el proceso de instalación del sistema, se ha
+      automatizado (en la medida de lo posible) el procedimiento a
+      seguir. Para ello, se ha creado un script con todos los valores
+      por defecto que se pudieron preconfigurar, solicitando
+      únicamente los datos que no pueden ser constantes; como lo son,
+      por ejemplo, la dirección IP, máscara de red, puerta de enlace,
+      entre otros. Los detalles se encuentran en <xref
+      linkend="instalacion"/>
+    </para>
+    <para>
+      Como ya hemos mencionado, no profundizaremos en cuanto al
+      funcionamiento de la tarjeta central; ya que fue un desarrollo
+      realizado por un tercero. En cambio, sí explicaremos con más
+      detalle el funcionamiento del resto del sistema.
+    </para>
+  </sect1>
+
+  <sect1>
+    <title>Características</title>
+    <itemizedlist>
+      <title>Las principales características del sistema son:</title>
+      <listitem>
+	<para>
+	  Está basado en un sistema tipo UNIX, como lo es <systemitem
+	  class="osname">Debian GNU/Linux</systemitem>, llevando
+	  consigo todos los beneficios que eso representa.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Desde el momento de la instalación, el sistema funciona con
+	  2 discos de igual capacidad; y queda de una vez configurado
+	  para que ambos discos sean espejos mediante un RAID por
+	  software (RAID1).
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Una vez completado el proceso de instalación, solo es
+	  necesario encender el equipo para su puesta en marcha. No
+	  requiere de intervención humana para su operación.
+	</para>
+      </listitem>
+    <listitem>
+      <para>
+	Está compuesto por tres sencillos módulos desarrollados en el
+	lenguaje de programación <link
+	xlink:href="http://www.perl.org">Perl</link>: uno para la
+	comunicación serial, otro para la captura y almacenamiento de
+	las imágenes, y el tercero para las visualización de las
+	imágenes.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+	El almacenamiento de las imágenes se realiza en una base de
+	datos formal y robusta; de esta forma de aprovecha su sistema
+	de indexado para la obtención y visualización de las imágenes
+	después que han sido almacenadas.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+	Se emplea un sistema que llamamos <emphasis>Marca de
+	Agua</emphasis>, con el que aseguramos que las imágenes se
+	mantienen sin ningún tipo de alteraciones.
+      </para>
+    </listitem>
+    </itemizedlist>
+  </sect1>
+  
+  <sect1>
+    <title>Sistema Operativo</title>
+
+    <para>
+      Digicheck2 está hecho sobre las bases del sistema operativo
+      Debian GNU/Linux 6. Toda la documentación necesaria para la
+      modificación, expansión o personalización del producto se
+      encuentra en la página oficial del 
+      <link xlink:href="http://www.debian.org">proyecto</link>.
+    </para>
+    
+    <sect2>
+      <title>El instalador</title>
+      <para>
+	El instalador de Debian se llama
+	<application>debian-installer</application>. Este componente
+	posee la facilidad de automatizar el proceso de instalación a
+	través de un script, hasta el punto que sea conveniente para
+	el usuario. De esta forma se logró preestablecer muchas
+	características sin que fuera necesaria la participación del
+	operador; como la clave del superusuario y otros usuarios del
+	sistema, el esquema de particiones, arreglos de discos por
+	software, entre otras.
+      </para>
+      
+      <para>
+	En el disco de instalación se podrá encontrar el archivo
+	<filename>preseed.cfg</filename>, donde se encuentran todas
+	las directivas utilizadas en el proceso de instalación de
+	Digicheck2. Sin embargo, hay parámetros que deben ser
+	indicados en el momento de la instalación. Esto se debe a que
+	no todos los ambientes donde se pondrá en marcha Digicheck2
+	son iguales, y se deben especificar datos como direcciones IP,
+	máscaras de red, servidores NTP, DNS, etc.
+      </para>
+      
+      <para>
+	Los parámetros que no se incluyen en el proceso de
+	instalación, pero que resultan indipensables para la
+	operatividad de Digicheck2, son incluidos en una fase
+	post-instalación. Esta fase consiste en un script de inicio
+	que verifica la existencia de ciertos datos. Cuando el sistema
+	inicia por primera vez, estos datos no existen y se ejecuta el
+	script; permitiendo que el operador introduzca los datos
+	requeridos. Cuando el sistema se reinicia por alguna razón, el
+	script se da cuenta que los datos ya existen y aborta su
+	ejecución, permitiendo que el sistema inicie con normalidad y
+	hasta llegar a un estado operativo.
+      </para>
+      
+      <para>
+	En <xref linkend="instalacion"/> encontrará un manual completo
+	de los pasos a seguir en el momento de la instalación de
+	Digicheck2.
+      </para>
+    </sect2>
+  </sect1>
+  
+  <sect1>
+    <title>Software</title>
+    
+    <para>
+      El software de Digicheck2 está escrito en el lenguaje de
+      programación Perl, como ya hemos mencionado, y consta de 3
+      programas.
+    </para>
+
+    <sect2>
+      <title>serial.pl</title>
+      <para>
+	Este programa, contenido en el archivo
+	<filename>serial.pl</filename>, se encarga de la comunicación
+	serial entre la tarjeta central y el software de Digicheck2.
+      </para>
+    </sect2>
+
+    <sect2>
+      <title>servel.pl</title>
+      <para>
+	El archivo <filename>servel.pl</filename>contiene el programa
+	que efectivamente captura la imagen desde un flujo de video,
+	la procesa para darle el formato adecuado (JPEG) y la guarda
+	en la base de datos con sus identificadores correspondientes.
+      </para>
+    </sect2>
+
+    <sect2>
+      <title>digiweb.pl</title>
+      <para>
+	El archivo <filename>digiweb.pl</filename> es el programa que
+	inicia la aplicación web mediante la cual se visualizan los
+	registros.
+      </para>
+      <para>
+	Esta aplicación está basada en el framework de desarrollo
+	<link xlink:href="http://mojolicio.us">Mojolicious</link>,
+	orientado a la creación de servicios web.
+      </para>
+    </sect2>
+  </sect1>
+
+  <sect1>
+    <title>Base de Datos</title>
+    <para>
+      Digicheck2 utiliza <application>PostgreSQL</application> como
+      motor de base de datos para el almacenamiento de las imágenes.
+    </para>
+    
+  </sect1>
+  
+</chapter>

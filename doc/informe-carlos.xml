@@ -1,0 +1,1380 @@
+<appendix xml:id="informe.carlos">
+  <title>Documentación de la Tarjeta Central</title>
+
+  <note>
+    <para>
+      A continuación incluimos, como un apéndice a nuestra
+      documentación, el informe entregado por el Ing. Carlos Narvaez
+      con la documentación de la Central Digicheck2, desarrollador de
+      dicha pieza de hardware. Solo hemos cambiado la presentación del
+      informe para mantener el estilo del formato en nuestros textos;
+      por lo que cualquier errata, falta de información y discordancia
+      entre lo escrito y lo hecho debe ser consultado con el autor de
+      este informe.
+    </para>
+  </note>
+  
+  <simplesect>
+    <title>Objetivo general</title>
+    <para>
+      Diseñar, fabricar y probar las Tarjetas de Fuente, Disparo y
+      Central actualizadas dadas las especificaciones requeridas por
+      la Empresa Bayco para mejorar el desempeño de estos equipos.
+    </para>
+  </simplesect>
+
+  <simplesect>
+    <title>Objetivos específicos</title>
+    <itemizedlist>
+      <listitem>
+	<para>
+	  Reemplazar los sistemas de las tarjetas que presentan
+	  tecnología obsoleta por circuitos integrados digitales e
+	  inteligentes como los Microcontroladores.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Mejorar la comunicación entre la Tarjeta Central con el
+	  computador vía Rs-232 y entre la Tarjeta central con las
+	  Tarjetas de Disparo vía RS-485.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Reemplazar los potenciómetros de calibración por circuitos
+	  más confiables y robustos.
+	</para>
+      </listitem>
+    </itemizedlist>
+  </simplesect>
+
+  <sect1>
+    <title>Tarjeta Fuente</title>
+    <para>
+      Se diseñó una fuente de voltaje que convierte los 120Vrms de la
+      red doméstica en +5Vdc y -5Vdc para alimentar a la Tarjeta
+      Central.
+    </para>
+    
+    <sect2>
+      <title>Esquemático</title>
+      <para>
+	El diagrama esquemático donde se muestran los componentes y las
+	conexiones entre los componentes de la Tarjeta Fuente se muestran en
+	la <xref linkend="inf.fig1"/>.
+      </para>
+      <figure xml:id="inf.fig1">
+	<title>Diagrama esquemático de la Tarjeta Fuente de +5V y
+	-5V</title>
+	<mediaobject>
+	  <imageobject condition="web">
+	    <imagedata fileref="img/png/INFORME_html_m46a7e675.png" scale="80"/>
+	  </imageobject>
+	  <imageobject condition="print">
+	    <imagedata fileref="img/png/INFORME_html_m46a7e675.png" scale="30"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    En la bornera K1 se conecta el voltaje de 120Vrms en sus
+	    pines 1 y 3 (ver <xref linkend="inf.fig2"/>).
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    En la bornera K2 se conectan los dos cables del embobinado
+	    primario del transformador en sus pines 1 y 3 (ver <xref
+	    linkend="inf.fig2"/>).
+	  </para>
+	</listitem>
+	<figure xml:id="inf.fig2">
+	  <title>Bornera K1 y Bornera K2</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/INFORME_html_m3f617a1c.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/INFORME_html_m3f617a1c.png" scale="30"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	<listitem>
+	  <para>
+	    El transformador reduce los 120Vrms de la red doméstica que
+	    recibe en su embobinado primario y los reduce a dos tomas de
+	    9Vrms con una capacidad de corriente de 0.5Arms cada una.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    En la bornera K3 se conectan los dos cables del embobinado
+	    secundario en los pines 1 y 3 y en el pin 2 el cable de
+	    tierra (ver <xref linkend="inf.fig3"/>).
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Para proteger la fuente contra sobre corrientes se colocaron
+	    los fusibles F1 y F2 de 1A y 250V (ver <xref linkend="inf.fig3"/>).
+	  </para>
+	</listitem>
+	<figure xml:id="inf.fig3">
+	  <title>Bornera K3 y fusibles F1 y F2</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/INFORME_html_m71dd95cb.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/INFORME_html_m71dd95cb.png" scale="30"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	    <listitem>
+	  <para>
+	    El puente de diodos D1 de 6A y 800V se encarga de transformar
+	    la señal alterna en una señal rectificada de onda completa
+	    (ver <xref linkend="inf.fig4"/>).
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Los dos capacitores electrolíticos C1 y C4 de 4700uF y 35V se
+	    encargar de eliminar el voltaje de rizado de la señal
+	    rectificada. De C1 se obtiene +9Vrms y de C4 -9Vrms (ver
+	    <xref linkend="inf.fig4"/>).
+	  </para>
+	</listitem>
+	<figure xml:id="inf.fig4">
+	  <title>Puente de diodos D1 y capacitores electrolíticos C1 y
+	  C4</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/INFORME_html_mec9265d.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/INFORME_html_mec9265d.png" scale="30"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	<listitem>
+	  <para>
+	    El conjunto regulador de voltaje L7805CV (U1), capacitores
+	    electrolíticos C2 de 0.33uF/50V y C3 de 0.1uF/50V se
+	    encargan de reducir los +9Vrms rectificados a +5Vdc (ver
+	    <xref linkend="inf.fig5"/>).
+	  </para>
+	</listitem>
+	<figure xml:id="inf.fig5">
+	  <title>Regulador U1 y capacitores electrolíticos C2 y C3</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/INFORME_html_6a53c6de.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/INFORME_html_6a53c6de.png" scale="30"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	<listitem>
+	  <para>
+	    El conjunto regulador de voltaje L7905CV (U2), capacitores
+	    electrolíticos C5 de 0.33uF/50V y C6 de 0.1uF/50V se encargan de
+	    reducir los -9Vrms rectificados a -5Vdc (ver <xref linkend="inf.fig6"/>).
+	  </para>
+	</listitem>
+	<figure xml:id="inf.fig6">
+	  <title>Regulador U2 y capacitores electrolíticos C2 y C3</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/INFORME_html_35fa93e9.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/INFORME_html_35fa93e9.png" scale="30"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+	<listitem> 
+	  <para>
+	    En la bornera K4 se obtienen los siguientes voltajes de
+	    salida: Pin 1: +5V, Pin2: GND, Pin3: -5V (ver <xref linkend="inf.fig7"/>).
+	  </para>
+	</listitem>
+	<figure xml:id="inf.fig7">
+	  <title>Bornera K4</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/INFORME_html_m3c58c4c1.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/INFORME_html_m3c58c4c1.png" scale="30"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </itemizedlist>
+    </sect2>    
+    <sect2>
+      <title>Lista de componentes de la Tarjeta Fuente</title>
+      <para>
+	La lista de componentes de la Tarjeta Fuente se muestra en
+	<xref linkend="tabla.lista.componentes"/>
+      </para>
+      <table xml:id="tabla.lista.componentes" frames="all" colsep="1">
+	<title>Lista de componentes de la Tarjeta Fuente</title>
+	<tgroup cols="2" align="center">
+	  <colspec colnum ="2" colwidth="80"/>
+	  <thead>
+	    <row>
+	      <entry>Nombre</entry><entry>Cantidad</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>Condensador Elect. 0.1 UF/50V</entry>
+	      <entry>2</entry>
+	    </row>
+	    <row>
+	      <entry>Condensador Elect. 0.33 UF/50V</entry>
+	      <entry>2</entry>
+	    </row>
+	    <row>
+	      <entry>Condensador Elect. 4700 UF/35V</entry>
+	      <entry>2</entry>
+	    </row>
+	    <row>
+	      <entry>Conector PCB 3 pos.</entry>  
+	      <entry>4</entry>
+	    </row>
+	    <row>
+	      <entry>Fusible 2 Amp</entry>
+	      <entry>2</entry>
+	    </row>
+	    <row>
+	      <entry>Porta Fusible Pcb Americano 2 pcs</entry>
+	      <entry>2</entry>
+	    </row>
+	    <row>
+	      <entry>Puente de Diodos 6A / 800V</entry>
+	      <entry>1</entry>
+	    </row>
+	    <row>
+	      <entry>Regulador de Voltaje 5V 7805</entry>
+	      <entry>1 </entry>
+	    </row>
+	    <row>
+	      <entry>Regulador de Voltaje -5V 7905</entry>
+	      <entry>1</entry>
+	    </row>
+	    <row>
+	      <entry>Transformador Toma Central 9-0-9 V de 1A</entry>
+	      <entry>1</entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+    </sect2>
+  </sect1>
+
+  <sect1>
+    <title>Tarjeta de Disparo</title>
+    <sect2>
+      <title>Esquemático</title>
+      <para>
+	La Tarjeta de Disparo actualizada trabaja con +12Vdc. Se encarga
+	de indicarle a la Tarjeta Central cuando se deben capturar las
+	fotos al oprimir el pulsador externo. Tiene comunicación RS-485
+	con la Tarjeta Central y salidas para la activación de los leds
+	indicadores del estado del proceso de captura de fotos.
+      </para>
+      <para>
+	El diagrama esquemático donde se muestran los componentes y las
+	conexiones entre los componentes de la Tarjeta de Disparo se
+	muestran en <xref linkend="inf.fig8"/>.
+      </para>
+      <figure xml:id="inf.fig8">
+	<title>Diagrama esquemático de la Tarjeta de Disparo</title>
+	<mediaobject>
+	  <imageobject condition="web">
+	    <imagedata fileref="img/png/INFORME_html_m3c58c4c1.png" scale="80"/>
+	  </imageobject>
+	  <imageobject condition="print">
+	    <imagedata fileref="img/png/INFORME_html_m3c58c4c1.png" scale="30"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <para>
+	La Bornera P1 (ver <xref linkend="inf.fig9"/>) tiene las
+	siguientes conexiones que se muestran en <xref
+	linkend="conex.bornera"/> y en <xref
+	linkend="inf.fig10"/>.
+      </para>
+      <figure xml:id="inf.fig9">
+	<title>Bornera P3</title>
+	<mediaobject>
+	  <imageobject condition="web">
+	    <imagedata fileref="img/png/INFORME_html_55031d91.png" scale="80"/>
+	  </imageobject>
+	  <imageobject condition="print">
+	    <imagedata fileref="img/png/INFORME_html_55031d91.png" scale="30"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <table xml:id="conex.bornera" frames="all" colsep="1"> 
+	<title>Conexiones de la bornera P1 de la Tarjeta de
+	Disparo</title>
+	<tgroup align="center" cols="2">
+	  <colspec colnum="1" colwidth="25"/>
+	  <thead>
+	    <row>
+	      <entry>Pin</entry><entry>Descripción</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>1</entry>
+	      <entry>+12Vdc de alimentación</entry>
+	    </row>
+	    <row>
+	      <entry>2</entry>
+	      <entry>
+		GND o tierra del circuito. Se coloca uno de los
+		terminales del Pulsador externo para la captura de fotos
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>3</entry>
+	      <entry>
+		PULSO se coloca el terminal restante del pulsador externo
+		para la captura de fotos
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>4</entry>
+	      <entry>TERMINAL A para la comunicación RS-485</entry> 
+	    </row>
+	    <row>
+	      <entry>5</entry> 
+	      <entry>TERMINAL B para la comunicación RS-485</entry>
+	    </row>
+	    <row>
+	      <entry>6</entry> <entry>Ánodo para el led verde</entry>
+	    </row>
+	    <row>
+	      <entry>7</entry> <entry>Ánodo para el led rojo</entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+      <figure xml:id="inf.fig10">
+	<title>Diagrama de Conexiones de la Tarjeta de Disparo</title>
+	<mediaobject>
+	  <imageobject condition="web">
+	    <imagedata fileref="img/png/INFORME_html_54984f8e.png" scale="80"/>
+	  </imageobject>
+	  <imageobject condition="print">
+	    <imagedata fileref="img/png/INFORME_html_54984f8e.png" scale="30"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <para>
+	El conjunto regulador de voltaje L7805CV (U4), capacitores
+	electrolíticos C4 (0.33uF/50V) y C5 (0.1uF/50V) se encargan de
+	reducir los 12Vdc provenientes de la Tarjeta Central a 5Vdc
+	con los cuales se alimenta toda la Tarjeta de Disparo (ver
+	<xref linkend="inf.fig11"/>).
+      </para>
+      <figure xml:id="inf.fig11">
+	<title>Regulador U4 y capacitores electrolíticos C4 y C5</title>
+	<mediaobject>
+	  <imageobject condition="web">
+	    <imagedata fileref="img/png/INFORME_html_m7cf4540c.png" scale="80"/>
+	  </imageobject>
+	  <imageobject condition="print">
+	    <imagedata fileref="img/png/INFORME_html_m7cf4540c.png" scale="30"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <para>
+	La resistencia R2 (10Kohm) y el capacitor electrolítico C3
+	(0.1uF/50V) se encargan de eliminar los rebotes mecánicos del
+	pulsador externo para tomar fotos y evitar errores en el
+	funcionamiento del resto del circuito (ver <xref
+	linkend="inf.fig12"/>).
+      </para>
+      <para>
+	El integrado 74LS14 (U2A) se encarga de invertir el estado
+	lógico del circuito anti rebotes que normalmente está en 1
+	lógico. Cuando el pulsador no está presionado la salida del
+	74LS14 envía un cero lógico al PIC16F628A. Cuando el pulsador
+	se presiona la salida del 74LS14 envía un uno lógico al
+	PIC16F628A (ver <xref linkend="inf.fig12"/>).
+      </para>
+      <figure xml:id="inf.fig12">
+	<title>Inversor U2A, resistencia R2 y capacitor electrolítico
+	C3</title>
+	<mediaobject>
+	  <imageobject condition="web">
+	    <imagedata fileref="img/png/INFORME_html_m38e0eae4.png" scale="80"/>
+	  </imageobject>
+	  <imageobject condition="print">
+	    <imagedata fileref="img/png/INFORME_html_m38e0eae4.png" scale="30"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <para>
+	El circuito integrado MAX485 (U3) (ver <xref
+	linkend="inf.fig13"/>) es el driver que le permite al
+	PIC16F628A comunicarse vía RS-485 con la Tarjeta Central. La
+	resistencia R7 de 120ohm se coloca entre los pines 6 y 7 por
+	recomendación del fabricante.
+      </para>
+      <figure xml:id="inf.fig13">
+	<title>Circuito integrado U3 y resistencia R7</title>
+	<mediaobject>
+	  <imageobject condition="web">
+	    <imagedata fileref="img/png/INFORME_html_m109d9847.png" scale="80"/>
+	  </imageobject>
+	  <imageobject condition="print">
+	    <imagedata fileref="img/png/INFORME_html_m109d9847.png" scale="30"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <para>
+	Los transistores NPN 2N3904 (Q1 y Q2) y las resistencias R3, R4
+	(1Kohm), R5 y R6 (330ohm) se encargan del encendido y apagado de
+	los leds indicadores del estado del proceso de captura de fotos en
+	la Tarjeta Central (ver <xref linkend="inf.fig14"/>).
+      </para>
+      <figure xml:id="inf.fig14">
+	<title>Transistores Q1 y Q2 y resistencias R3, R4, R5 y R6</title>
+	<mediaobject>
+	  <imageobject condition="web">
+	    <imagedata fileref="img/png/INFORME_html_m69a57dcf.png" scale="80"/>
+	  </imageobject>
+	  <imageobject condition="print">
+	  <imagedata fileref="img/png/INFORME_html_m69a57dcf.png" scale="30"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+      <para>
+	El microcontrolador PIC16F628A (U1) (ver <xref
+	linkend="inf.fig15"/>) contiene el programa de control de la
+	Tarjeta de Disparo que permite: detectar el flanco de subida
+	del pulsador, llevar a cabo la comunicación RS-485 con la
+	tarjeta Central y controlar los leds indicadores del estado de
+	la captura de fotos.
+      </para>
+      <figure xml:id="inf.fig15">
+	<title>Microcontrolador PIC16F628A (U1)</title>
+	<mediaobject>
+	  <imageobject condition="web">
+	    <imagedata fileref="img/png/INFORME_html_5ecb58b1.png" scale="80"/>
+	  </imageobject>
+	  <imageobject condition="print">
+	    <imagedata fileref="img/png/INFORME_html_5ecb58b1.png" scale="30"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      <orderedlist>
+	<title>El programa del PIC16F628A se explica a
+	continuación:</title>
+	<listitem>
+	  <para>Se configuran los puertos de entradas y salidas
+	  digitales.</para> 
+	</listitem>
+	<listitem>
+	  <para>Se configura la interrupción por flanco
+	  positivo int.</para>
+	</listitem>
+	<listitem>
+	  <para>En el lazo while infinito se espera indefinidamente por un
+	  pulso de entrada que produzca una interrupción.</para>
+	</listitem>
+	<listitem>
+	  <para>Al producirse un pulso el PIC16F628A ejecuta la
+	  rutina de interrupción la cual:</para>
+	  <orderedlist>
+	    <listitem>
+	      <para>Apaga el led verde y enciende el led rojo.</para>
+	    </listitem>
+	    <listitem>
+	      <para>Se manda un pulso mediante el MAX485 hacia la Tarjeta
+	      Central indicándole que debe tomar las fotos del porta cámaras
+	      correspondiente.</para>
+	    </listitem>
+	    <listitem>
+	      <para>Se espera un pulso de retorno desde la Tarjeta Central que
+	      le indica a la Tarjeta de Disparo que ya se efectuó la captura
+	      de fotos.</para>
+	    </listitem>
+	    <listitem>
+	      <para>Apaga el led rojo y enciende el led verde.</para>
+	    </listitem>
+	    <listitem>
+	      <para>Se sale de la rutina de interrupción.</para>
+	    </listitem>
+	  </orderedlist>
+	</listitem>
+	<listitem>
+	  <para>Se retorna al lazo while infinito hasta que se presione
+	  nuevamente el pulsador.</para>
+	</listitem>
+      </orderedlist>
+  <para>
+    La lista con las conexiones del PIC16F628A se muestra en la 
+    <xref linkend="tabla.conexiones.pines"/>
+  </para>
+
+  <table xml:id="tabla.conexiones.pines" frame="all">
+    <title>Conexiones de los pines del PIC16F628A</title>
+    <tgroup cols="4" align="center">
+      <colspec colnum="1" colwidth="25"/>
+      <thead>
+	<row>
+	  <entry>Pin</entry><entry>Nombre</entry>
+	  <entry>Tipo</entry><entry>Función</entry>
+	</row>
+      </thead>
+      <tbody>
+	<row>
+	  <entry>1</entry><entry>RA2</entry>
+	  <entry>Salida Digital</entry><entry>Activa el Led Verde</entry>
+	</row>
+	<row>
+	  <entry>2</entry><entry>RA3</entry>
+	  <entry>Salida Digital</entry><entry>Activa el Led Rojo</entry>
+	</row>
+	<row>
+	  <entry>3</entry><entry>RA4</entry>
+	</row>
+	<row>
+	  <entry>4</entry><entry>MCLR</entry>
+	  <entry></entry><entry>Reset por pulsador interno</entry>
+	</row>
+	<row>
+	  <entry>5</entry><entry>Vss</entry><entry></entry>
+	  <entry>Conexión a tierra (GND)</entry>
+	</row>
+	<row>
+	  <entry>6</entry><entry>RB0</entry>
+	  <entry>Entrada Digital</entry>
+	  <entry>Detecta el flanco de subida del pulsador externo</entry>
+	</row>
+	<row>
+	  <entry>7</entry><entry>RB1</entry>
+	</row>
+	<row>
+	  <entry>8</entry><entry>RB2</entry>
+	</row>
+	<row>
+	  <entry>9</entry><entry>RB3</entry>
+	</row>
+	<row>
+	  <entry>10</entry><entry>RB4</entry>
+	</row>
+	<row>
+	  <entry>11</entry><entry>RB5</entry> <entry>Salida
+	  Digital</entry> <entry>Conexión con el pin de transmisión
+	  (DI) del MAX-485</entry>
+	</row>
+	<row>
+	  <entry>12</entry><entry>RB6</entry><entry>Salida
+	  Digital</entry> <entry>Conexión con los pines de
+	  habilitación de la transmisión (DE) o recepción (RE) del
+	  MAX-485</entry>
+	</row>
+	<row>
+	  <entry>13</entry><entry>RB7</entry>
+	  <entry>Entrada Digital</entry>
+	  <entry>
+	  Conexión con el pin de recepción (RE) del MAX-485
+	  </entry>
+	  </row>
+	  <row>
+	    <entry>14</entry><entry>Vdd</entry>
+	    <entry></entry><entry>Conexión a +5V</entry>
+	  </row>
+	  <row>
+	    <entry>15</entry><entry>OSC2</entry> <entry></entry>
+	    <entry>Conexión con el pin 2 del Cristal Oscilador de
+	    20MHz</entry> 
+	    </row>
+	    <row>
+	      <entry>16</entry><entry>OSC1</entry>
+	      <entry></entry>
+	      <entry>Conexión con el pin 1 del Cristal Oscilador de 20MHz
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>17</entry><entry>RA0</entry>
+	    </row>
+	    <row>
+	      <entry>18</entry><entry>RA1</entry>
+	    </row>
+      </tbody>
+    </tgroup>
+  </table>
+  <para>
+    La circuitería mínima que requiere el PIC16F628A para su correcto
+    funcionamiento es la siguiente: Resistencia R1 (10Kohm/1/4W) y
+    Pulsador SW1. Para reset por hardware (ver <xref linkend="inf.fig16"/>).
+  </para>
+  <figure xml:id="inf.fig16">
+    <title>Resistencia R1 y pulsador SW1</title>
+    <mediaobject>
+      <imageobject condition="web">
+	<imagedata fileref="img/png/INFORME_html_4c32cc75.png" scale="80"/>
+      </imageobject>
+      <imageobject condition="print">
+	<imagedata fileref="img/png/INFORME_html_4c32cc75.png" scale="30"/>
+      </imageobject>
+    </mediaobject>
+  </figure>
+  <para>
+    Cristal oscilador X1 (20MHz) y capacitores cerámicos C1 y C2 de
+    15pF. Genera la señal de reloj para que el PIC16F628A pueda
+    realizar sus tareas programadas (ver <xref linkend="inf.fig17"/>).
+  </para>
+   <figure xml:id="inf.fig17">
+    <title>Cristal oscilador X1 y capacitores cerámicos C1 y
+    C2</title>
+    <mediaobject>
+      <imageobject condition="web">
+	<imagedata fileref="img/png/INFORME_html_m4cbce968.png" scale="80"/>
+      </imageobject>
+      <imageobject condition="print">
+	<imagedata fileref="img/png/INFORME_html_m4cbce968.png" scale="30"/>
+      </imageobject>
+    </mediaobject>
+   </figure>
+ </sect2>
+ <sect2>
+   <title>Lista de componentes de la Tarjeta de Disparo</title>
+   <para>   
+     La lista de componentes de la Tarjeta de Disparo se muestra en
+     <xref linkend="tabla.comp.tarjeta.disparo"/>
+     </para>
+     <table xml:id="tabla.comp.tarjeta.disparo">
+       <title>Lista de componentes de la Tarjeta de Disparo</title>
+       <tgroup cols="2" align="center">
+	 <colspec colnum="1" colname="c1"/>
+	 <colspec colnum="2" colname="c2" colwidth="80"/>
+	 <thead>
+	   <row>
+	     <entry>Nombre</entry><entry>Cantidad</entry>
+	   </row>
+	 </thead>
+	 <tbody>
+	   <row>
+	     <entry>74LS14 INVERSOR Schmitt trigger</entry>
+	     <entry>1</entry>
+	   </row>
+	   <row>
+	     <entry>Base 18 Dip.</entry><entry>1</entry>
+	   </row>
+	   <row>
+	     <entry>Condensador Ceramico 15PF/50V</entry>
+	     <entry>2</entry>
+	   </row>
+	   <row>
+	     <entry>Condensador Elect. 0.1 UF/50V</entry>
+	     <entry>2</entry>
+	   </row>
+	   <row>
+	     <entry>Condensador Elect. 0.33 UF/50V</entry>
+	     <entry>1</entry>
+	   </row>
+	   <row>
+	     <entry>Conector PCB 2 pos.</entry>
+	     <entry>2</entry>
+	   </row>
+	   <row>
+	     <entry>Conector PCB 3 pos.</entry>
+	     <entry>1</entry>
+	   </row>
+	   <row>
+	     <entry>Cristal Miniatura de 20 Mhz</entry>
+	     <entry>1</entry>
+	   </row>
+	   <row>
+	   <entry>Max485</entry>
+	   <entry>1</entry>
+	   </row>
+	   <row>
+	     <entry>Pic 16f628A</entry> 
+	     <entry>1</entry>
+	   </row>
+	   <row>
+	     <entry>Pulsador 12</entry>
+	     <entry>1</entry>
+	   </row>
+	   <row>
+	     <entry>Regulador de Voltaje 5V 7805</entry>
+	     <entry>1</entry>
+	   </row>
+	   <row>
+	     <entry namest="c1" nameend="c2">
+	       Resistencias de 1/4W:
+	     </entry>
+	   </row>
+	   <row>
+	     <entry>120</entry><entry>1</entry>
+	   </row>
+	   <row>
+	     <entry>330</entry><entry>2</entry>
+	   </row>
+	   <row>
+	     <entry>1k</entry><entry>2</entry>
+	   </row>
+	   <row>
+	     <entry>10k</entry><entry>2</entry>
+	   </row>
+	   <row>
+	     <entry>TRANSISTOR 2n3904</entry>
+	     <entry>2</entry>
+	   </row>
+	 </tbody>
+       </tgroup>
+     </table>
+   </sect2>
+ </sect1>
+ <sect1>
+   <title>Tarjeta Central</title>
+   <para>
+   La Tarjeta Central actualizada trabaja con +5V y -5V. Se encarga de
+   distribuir los +12V a las ocho tarjetas de disparo que puede
+   soportar con las cuales tiene comunicación RS-485 bidireccional. La
+   comunicación con el computador se establece vía RS-232. Permite
+   multiplexar las señales de video de las ocho portas cámaras con la
+   ventaja de proveer una buena calidad de imagen y ajuste de brillo.
+   </para>
+   <sect2>
+     <title>Esquemático</title>
+     <para>
+       La Bornera P1 (ver <xref linkend="inf.fig18"/>) tiene las
+       siguientes conexiones que se muestran en la <xref
+       linkend="tabla.bornera.tarjeta"/> y en la <xref
+       linkend="inf.fig19"/>
+     </para>
+     <figure xml:id="inf.fig18">
+    <title>Bornera P1</title>
+    <mediaobject>
+      <imageobject condition="web">
+	<imagedata fileref="img/png/INFORME_html_427a731a.png" scale="80"/>
+      </imageobject>
+      <imageobject condition="print">
+	<imagedata fileref="img/png/INFORME_html_427a731a.png" scale="30"/>
+      </imageobject>
+    </mediaobject>
+   </figure>
+
+   <table xml:id="tabla.bornera.tarjeta">
+     <title>Conexiones de la bornera P1 de la Tarjeta de
+     Disparo</title>
+     <tgroup cols="2" align="center">
+       <colspec colnum="1" colwidth="30"/>
+       <thead>
+	 <row>
+	   <entry>Pin</entry><entry>Descripción</entry>
+	 </row>
+       </thead>
+       <tbody>
+	 <row>
+	   <entry>1</entry><entry>+12Vdc de alimentación</entry>
+	 </row>
+	 <row>
+	   <entry>2</entry><entry>+5Vdc de alimentación</entry>
+	 </row>
+	 <row>
+	   <entry>3</entry><entry>-5Vdc de alimentación</entry>
+	 </row>
+	 <row>
+	   <entry>4</entry><entry>GND o tierra del circuito</entry>
+	 </row>
+	 <row>
+	   <entry>5</entry>
+	   <entry>Señal de video de la cámara para la cara de la persona</entry>
+	 </row>
+	 <row>
+	   <entry>6</entry>
+	   <entry>Señal de video de la cámara para la cédula</entry>
+	 </row>
+	 <row>
+	   <entry>7</entry>
+	   <entry>Señal de video de la cámara para el cheque</entry>
+	 </row>
+	 <row>
+	   <entry>8</entry>
+	   <entry>Señal Rx de recepción de datos de la Tarjeta Central</entry>
+	 </row>
+	 <row>
+	   <entry>9</entry>
+	   <entry>Señal Tx de transmisión de datos desde la Tarjeta
+	   Central a la PC</entry>
+	 </row>
+       </tbody>
+     </tgroup>
+   </table>
+
+   <figure xml:id="inf.fig19">
+     <title>Diagrama de Conexiones de la Tarjeta Central</title>
+      <mediaobject>
+      <imageobject condition="web">
+	<imagedata fileref="img/png/INFORME_html_m4f634d.png" scale="80"/>
+      </imageobject>
+      <imageobject condition="print">
+	<imagedata fileref="img/png/INFORME_html_m4f634d.png" scale="30"/>
+      </imageobject>
+    </mediaobject>
+   </figure>
+   <para>
+     Los conectores RJ-45 cuádruples U21 y U22 (ver <xref
+     linkend="inf.fig20"/>) se encargar de conectar el cable UTP que
+     comunica las Tarjetas de Disparo con la Tarjeta Central. Para las
+     señales de video de las cámaras de los cheques se coloca una
+     resistencia de 1Kohm (R16, R22, R24, R26, R28, R30, R32 y
+     R34). Para las señales de video de las cámaras de video de las
+     cédulas se coloca una resistencia de 330ohm (R21, R23, R25, R27,
+     R29, R31, R33 y R35). La función de estas resistencias es generar
+     una buena impedancia de entrada para que las señales de video
+     puedan ser procesadas correctamente más adelante por la tarjeta
+     de captura de video. En la <xref linkend="tabla.conectores.rj45"/>
+     se muestran las conexiones de los conectores en el PCB; en la
+     <xref linkend="tabla.ponchado.utp"/> y en <xref linkend="inf.fig21"/>,
+     el ponchado del cable UTP.
+   </para>
+   <figure xml:id="inf.fig20">
+     <title>Conectores RJ-45 U21 y U22</title>
+     <mediaobject>
+       <imageobject condition="web">
+	 <imagedata fileref="img/png/INFORME_html_69085de5.png" scale="80"/>
+       </imageobject>
+       <imageobject condition="print">
+	 <imagedata fileref="img/png/INFORME_html_69085de5.png" scale="30"/>
+       </imageobject>
+     </mediaobject>
+   </figure>
+   <table xml:id="tabla.conectores.rj45">
+     <title>Conexiones de los conectores RJ-45 cuádruples U21 y
+     U22</title>
+     <tgroup cols="2" align="center">
+       <celspec colnum="1" celwidth="30"/>
+       <thead>
+	 <row>
+	   <entry>Pin</entry><entry>Descripción</entry>
+	 </row>
+       </thead>
+       <tbody>
+	 <row>
+	   <entry>1</entry>
+	   <entry>TERMINAL A para la comunicación RS-485</entry>
+	 </row>
+	 <row>
+	   <entry>2</entry>
+	   <entry>TERMINAL B para la comunicación RS-485</entry>
+	 </row>
+	 <row>
+	   <entry>3</entry>
+	   <entry>+12V</entry>
+	 </row>
+	 <row>
+	   <entry>4</entry> 
+	   <entry>Señal de video de la cámara para la
+	   cara de la persona</entry>
+	 </row>
+	 <row>
+	   <entry>5</entry>
+	   <entry>GND o tierra del circuito</entry>
+	 </row>
+	 <row>
+	 <entry>6</entry>
+	 <entry>Señal de video de la cámara para la cédula</entry>
+	 </row>
+	 <row>
+	   <entry>7</entry> 
+	   <entry>GND o tierra del circuito</entry>
+	 </row>
+	 <row>
+	   <entry>8</entry>
+	   <entry>Señal de video de la cámara para el cheque</entry>
+	 </row>
+       </tbody>
+     </tgroup>
+   </table>
+
+<table xml:id="tabla.ponchado.utp">
+  <title>Ponchado del cable UTP</title>
+  <tgroup cols="2" align="center">
+    <celspec colnum="2" celwigth="100"/>
+    <thead>
+      <row>
+	<entry>Color</entry><entry>Descripción</entry>
+      </row>
+    </thead>
+    <tbody>
+      <row>
+	<entry>Blanco-Marrón</entry><entry>A</entry>
+      </row>
+      <row>
+	<entry>Marrón</entry><entry>B</entry>
+      </row>
+      <row>
+	<entry>Blanco-Azul</entry><entry>+12V</entry>
+      </row>
+      <row>
+	<entry>Azul</entry>
+	<entry>Señal de video de la cámara para la cara de la persona</entry>
+      </row>
+      <row>
+	<entry>Blanco-Verde</entry><entry>GND</entry>
+      </row>
+      <row>
+	<entry>Verde</entry>
+	<entry>Señal de video de la cámara para la cédula</entry>
+      </row>
+      <row>
+	<entry>Blanco-Naranja</entry><entry>GND</entry>
+      </row>
+      <row>
+	<entry>Naranja</entry>
+	<entry>Señal de video de la cámara para el cheque</entry>
+      </row>
+    </tbody>
+  </tgroup>
+</table>
+<figure xml:id="inf.fig21">
+  <title>Ponchado del cable UTP</title>
+  <mediaobject>
+    <imageobject condition="web">
+      <imagedata fileref="img/png/INFORME_html_m50cb54bb.png" scale="80"/>
+    </imageobject>
+    <imageobject condition="print">
+      <imagedata fileref="img/png/INFORME_html_m50cb54bb.png" scale="30"/>
+    </imageobject>
+  </mediaobject>
+</figure>
+<para>
+  Los circuitos integrado MAX485 (U3, U4, U5, U6, U7, U8, U9 y U10)
+  establecen la comunicación RS-485 entre la Tarjeta Central y las
+  Tarjeta de Disparo. Mediante este integrado se recibe un pulso
+  proveniente de las Tarjetas de Disparo indicando que se debe tomar
+  una foto y envía un pulso de retorno que le indica a la tarjeta de
+  disparo que efectivamente se tomó la foto. Las resistencias de
+  120ohm (R2, R3, R4, R5, R6, R7, R8 y R9) se colocan por
+  recomendación del fabricante (ver <xref linkend="inf.fig22"/>).
+</para>
+<figure xml:id="inf.fig22">
+  <title>Integrados U3, U4, U5, U6, U7, U8, U9 y U10 y resistencias R2,
+  R3, R4, R5, R6, R7, R8 y R9</title>
+  <mediaobject>
+    <imageobject condition="web">
+      <imagedata fileref="img/png/INFORME_html_m5ed361df.png" scale="80"/>
+    </imageobject>
+    <imageobject condition="print">
+      <imagedata fileref="img/png/INFORME_html_m5ed361df.png" scale="30"/>
+    </imageobject>
+  </mediaobject>
+</figure>
+<para>
+  El Circuito integrado MAX232 (U2) se encarga de establecer la
+  comunicación serial entre el PIC18F4550 y el computador vía
+  RS-232. Mediante este circuito integrado se envía un carácter al
+  sistema en Linux o en Windows que le indica cuál de los porta
+  cámaras envió un pulso. Luego se recibe una instrucción de
+  reconocimiento para continuar con la ejecución del programa (ver
+  <xref linkend="inf.fig23"/>).
+</para>
+<figure xml:id="inf.fig23">
+  <title>Circuito integrado U2</title>
+  <mediaobject>
+    <imageobject condition="web">
+      <imagedata fileref="img/png/INFORME_html_584f851b.png" scale="80"/>
+    </imageobject>
+    <imageobject condition="print">
+      <imagedata fileref="img/png/INFORME_html_584f851b.png" scale="30"/>
+    </imageobject>
+  </mediaobject>
+</figure>
+<para>
+  Los circuitos integrados HCF4066 (U13, U14, U15, U16, U17, U18, U19
+  y U20) son los switches de video. Cada integrado tiene cuatro
+  switches analógicos que permite controlar las señales de video que
+  se multiplexan a la tarjeta de captura de video. Los switches de
+  video están alimentados con +5V y -5V para poder permitir el paso de
+  las señales tipo NTSC de las cámaras sin que estas pierdan calidad
+  (ver <xref linkend="inf.fig24"/>).
+</para>
+<figure xml:id="inf.fig24">
+  <title>Circuito integrados U13, U14, U15, U16, U17, U18, U19 y U20</title>
+  <mediaobject>
+    <imageobject condition="web">
+      <imagedata fileref="img/png/INFORME_html_223ecd44.png" scale="80"/>
+    </imageobject>
+    <imageobject condition="print">
+      <imagedata fileref="img/png/INFORME_html_223ecd44.png" scale="30"/>
+    </imageobject>
+  </mediaobject>
+</figure>
+<para>
+  Los circuitos integrados HCF4054 (U1 y U12) son conversores de
+  niveles de lógicos. Estos se encarga de convertir las señales de
+  control del PIC18F4550 de 5V y 0V a +5V y -5V para poder manejar los
+  switches analógicos correctamente (ver Figura 25).
+</para>
+<!-- Figura 25: Circuitos Integrados U1 y U12. -->
+<para>
+  El circuito integrado LT1254 (U11) es un amplificador de video. Se
+  encarga de amplificar las señales de video de las cámaras de
+  vigilancia ya que al pasar estas por los switches analógicos HCF4066
+  estas pierden un poco de brillo. Con este circuito integrado de
+  logra obtener una buena calidad de la imagen. Para el correcto
+  funcionamiento de este integrado se le debe suministrar +5V y
+  -5V.
+</para>
+<para>
+  El capacitor electrolítico C10 (0.1uF/50V) se encarga de eliminar el
+  ruido de las señales de video. Las resistencias de 680ohm forman una
+  configuración de amplificador no inversor de ganancia Av=2 con esto
+  se mejora la calidad de las imágenes. Los potenciómetros de 1kohm
+  controlas el brillo en las señales de video que se envían a la
+  tarjeta de captura de video.
+</para>
+
+<!-- Figura 26: Circuito integrado U11, capacitor C10, resistencias R10, R11, R12, R13, R14 y R15 y potenciómetros RV1, RV2 y RV3. -->
+<para>
+  El conjunto transistores npn 2N3904 (Q1 y Q2), leds D1 (verde) y D2
+  (Rojo), resistencias R17, R18 (330ohm), R19, R20 (1kohm) se encargan
+  de indicar el estado de la Tarjeta Central. Cuando el led verde esta
+  encendido la Tarjeta Central está libre para recibir un pulso de
+  disparo. Cuando el led rojo esta encendido la Tarjeta Central está
+  ocupada multiplexando las señales de video (ver Figura 27).
+</para>
+<!-- Figura 27: Transistores Q1, Q2, resistencias R17, R18, R19, R20 y leds D1, D2. -->
+<para>
+  El PIC18F4550 (U***1) contiene el programa de control de la Tarjeta
+  Central. Este controla las comunicaciones RS-485 con las Tarjetas de
+  Disparo y RS-232 con el computador, la habilitación o
+  deshabilitación de los switches de video para el multiplexado de
+  estas señales y el encendido y apagado de los leds indicadores del
+  estado de la toma de fotos (ver Figura 28).
+</para>
+<!-- Figura 28: Circuito integrado U***1. -->
+
+
+<!-- El programa del PIC18f4550 se explica a continuación: -->
+<!-- 1. Se configuran los puertos de entradas y salidas digitales. -->
+<!-- 2. Se configura el módulo EUSART para la comunicación RS-232 con el computador. -->
+<!-- 3. Se hace un retardo en el arranque para que las señales de entrada y salida se estabilicen y no generen falso pulsos o funcionamiento incorrecto de las tarjetas. -->
+<!-- 4. Se entra en el laso while infinito donde se ejecutan las instrucciones más importantes del programa. -->
+<!-- 4.1. El programa revisa secuencialmente los pines destinado a la recepción de datos vía RS-485 (RB1, RB3, RB5, RB7, RD0, RD3, RD5, RD7 para los porta cámaras H, G, F, E, D, C, B, A respectivamente) en búsqueda de un pulso enviado por las Tarjetas de Disparo. -->
+<!-- 4.2. En el caso de recibir un pulso se enciende el led rojo, se apaga el verde y se activa la salida digital del micro que habilita el paso de las señales de video por el respectivo canal. -->
+<!-- 4.3. Se produce un retraso de 1000mseg para que la señal pueda ser obtenida por la tarjeta de captura de video. -->
+<!-- 4.4. Se envía un carácter (a, b, c, d, e, f, g, h) que le indica al sistema en Linux a cual porta cámaras pertenecen las señales de video. -->
+<!-- 4.5. Se espera el reconocimiento por el sistema Linux  el cual envía una instrucción de reconocimiento (ack=0x06) para que el programa del PIC18F4550 continúe con su ejecución. -->
+<!-- 4.6. Se produce otro retraso de 1000mseg para que efectivamente las imágenes puedan ser capturadas. -->
+<!-- 4.7. El MAX485 se coloca en modo transmisión. Se envía el pulso de retorno a la Tarjeta de Disparo. -->
+<!-- 4.8. El MAX485regresa a su modo de recepción para poder atender los futuros pulsos de captura de fotos. -->
+<!-- 4.9. Se enciende el led verde y se apaga el rojo. -->
+<!-- 5. Se continúa con el escaneo del resto de las entradas. El proceso descrito en el punto 4 es el mismo para todos los canales de la tarjeta central. -->
+
+<!-- La lista con las conexiones del PIC18F4550 se muestra en la Tabla 8. -->
+
+<!-- Tabla 8: Conexiones de los pines del  PIC18F4550. -->
+<!-- PIN -->
+<!-- NOMBRE  -->
+<!-- TIPO -->
+<!-- FUNCIÓN -->
+<!-- 1 -->
+<!-- MCLR -->
+
+<!-- Reset por pulsador interno. -->
+<!-- 2 -->
+<!-- RA0 -->
+<!-- Salida Digital. -->
+<!-- Activa el Led Verde. -->
+<!-- 3 -->
+<!-- RA1 -->
+<!-- Salida Digital. -->
+<!-- Activa el Led Rojo. -->
+<!-- 4 -->
+<!-- RA2 -->
+
+
+<!-- 5 -->
+<!-- RA3 -->
+<!-- Salida Digital. -->
+<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras H. -->
+<!-- 6 -->
+<!-- RA4 -->
+<!-- Salida Digital. -->
+<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras G. -->
+<!-- 7 -->
+<!-- RA5 -->
+<!-- Salida Digital. -->
+<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras F. -->
+<!-- 8 -->
+<!-- RE0 -->
+<!-- Salida Digital. -->
+<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras E. -->
+<!-- 9 -->
+<!-- RE1 -->
+<!-- Salida Digital. -->
+<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras D. -->
+<!-- 10 -->
+<!-- RE2 -->
+<!-- Salida Digital. -->
+<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras C. -->
+<!-- 11 -->
+<!-- Vdd -->
+
+<!-- Conexión a +5V. -->
+<!-- 12 -->
+<!-- Vss -->
+
+<!-- Conexión a tierra (GND). -->
+<!-- 13 -->
+<!-- OSC1 -->
+
+<!-- Conexión con el pin 1 del Cristal Oscilador de 20MHz. -->
+<!-- 14 -->
+<!-- OSC2 -->
+
+<!-- Conexión con el pin 2 del Cristal Oscilador de 20MHz. -->
+<!-- 15 -->
+<!-- RC0 -->
+<!-- Salida Digital. -->
+<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras B. -->
+<!-- 16 -->
+<!-- RC1 -->
+<!-- Salida Digital. -->
+<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras A. -->
+<!-- 17 -->
+<!-- RC2 -->
+<!-- Salida Digital. -->
+<!-- Conexión con el pin de transmisión (DI) de los ocho MAX-485. -->
+<!-- 18 -->
+<!-- Vusb -->
+
+
+<!-- 19 -->
+<!-- RD0 -->
+<!-- Salida Digital. -->
+<!-- Conexión con los pines de habilitación de la transmisión (DE) o recepción (RE) del MAX-485 (U10/Porta Cámaras H). -->
+<!-- 20 -->
+<!-- RD1 -->
+<!-- Entrada Digital. -->
+<!-- Conexión con el pin de recepción (RE) del MAX-485 (U10/Porta Cámaras H). -->
+<!-- 21 -->
+<!-- RD2 -->
+<!-- Salida Digital. -->
+<!-- Conexión con los pines de habilitación de la transmisión (DE) o recepción (RE) del MAX-485 (U9/Porta Cámaras G). -->
+<!-- 22 -->
+<!-- RD3 -->
+<!-- Entrada Digital. -->
+<!-- Conexión con el pin de recepción (RE) del MAX-485 (U9/Porta Cámaras G). -->
+<!-- 23 -->
+<!-- RC4 -->
+
+
+<!-- 24 -->
+<!-- RC5 -->
+
+
+<!-- 25 -->
+<!-- RC6 -->
+
+<!-- Transmisión de Datos hacia el pin T1IN del MAX-232. -->
+<!-- 26 -->
+<!-- RC7 -->
+
+<!-- Recepción de Datos hacia el pin R1OUT del MAX-232. -->
+<!-- 27 -->
+<!-- RD4 -->
+<!-- Salida Digital. -->
+<!-- Conexión con los pines de habilitación de la transmisión (DE) o recepción (RE) del MAX-485 (U8/Porta Cámaras F). -->
+<!-- 28 -->
+<!-- RD5 -->
+<!-- Entrada Digital. -->
+<!-- Conexión con el pin de recepción (RE) del MAX-485 (U8/Porta Cámaras F). -->
+<!-- 29 -->
+<!-- RD6 -->
+<!-- Salida Digital. -->
+<!-- Conexión con los pines de habilitación de la transmisión (DE) o recepción (RE) del MAX-485 (U7/Porta Cámaras E). -->
+<!-- 30 -->
+<!-- RD7 -->
+<!-- Entrada Digital. -->
+<!-- Conexión con el pin de recepción (RE) del MAX-485 (U7/Porta Cámaras E). -->
+<!-- 31 -->
+<!-- Vss -->
+
+<!-- Conexión a tierra (GND). -->
+<!-- 32 -->
+<!-- Vdd -->
+
+<!-- Conexión a +5V. -->
+<!-- 33 -->
+<!-- RB0 -->
+<!-- Salida Digital. -->
+<!-- Conexión con los pines de habilitación de la transmisión (DE) o recepción (RE) del MAX-485 (U6/Porta Cámaras D). -->
+<!-- 34 -->
+<!-- RB1 -->
+<!-- Entrada Digital. -->
+<!-- Conexión con el pin de recepción (RE) del MAX-485 (U6/Porta Cámaras D). -->
+<!-- 35 -->
+<!-- RB2 -->
+<!-- Salida Digital. -->
+<!-- Conexión con los pines de habilitación de la transmisión (DE) o recepción (RE) del MAX-485 (U5/Porta Cámaras C). -->
+<!-- 36 -->
+<!-- RB3 -->
+<!-- Entrada Digital. -->
+<!-- Conexión con el pin de recepción (RE) del MAX-485 (U5/Porta Cámaras C). -->
+<!-- 37 -->
+<!-- RB4 -->
+<!-- Salida Digital. -->
+<!-- Conexión con los pines de habilitación de la transmisión (DE) o recepción (RE) del MAX-485 (U4/Porta Cámaras B). -->
+<!-- 38 -->
+<!-- RB5 -->
+<!-- Entrada Digital. -->
+<!-- Conexión con el pin de recepción (RE) del MAX-485 (U4/Porta Cámaras B). -->
+<!-- 39 -->
+<!-- RB6 -->
+<!-- Salida Digital. -->
+<!-- Conexión con los pines de habilitación de la transmisión (DE) o recepción (RE) del MAX-485 (U3/Porta Cámaras A). -->
+<!-- 40 -->
+<!-- RB7 -->
+<!-- Entrada Digital. -->
+<!-- Conexión con el pin de recepción (RE) del MAX-485 (U3/Porta Cámaras A). -->
+
+<!-- La circuitería mínima que requiere el Pic16f628A para su correcto funcionamiento es la siguiente: -->
+
+<!-- Resistencia R1 (10Kohm/1/4W) y Pulsador SW1. Para reset por hardware (ver Figura 29). -->
+
+
+<!-- Figura 29: Resistencia R1 y pulsador SW1. -->
+
+
+<!-- Cristal oscilador X1 (20MHz) y capacitores C2 y C8 de 15pF. Genera la señal de reloj  Para que el PIC18F4550 pueda realizar sus tareas programadas (ver Figura 30). -->
+
+<!-- Figura 30: Cristal X1 y capacitores cerámicos C2 y C8. -->
+
+</sect2>
+
+
+<sect2>
+
+<!-- 3.2. Lista de componentes de la Tarjeta Central. -->
+
+<!-- La lista de componentes de la Tarjeta Central se muestra en la Tabla 9. -->
+
+<!-- Tabla 9: Lista de componentes de la Tarjeta Central. -->
+<!-- Nombre -->
+<!-- Cantidad -->
+<!-- Amplificador Operacional de Video LT1254CN -->
+<!-- 1 -->
+<!-- Base 40 Dip  -->
+<!-- 1 -->
+<!-- Condensador Elect. 0.1 UF/50V -->
+<!-- 6 -->
+<!-- Condensador Ceramico 15PF/50V -->
+<!-- 2 -->
+<!-- Conector PCB 3 pos. -->
+<!-- 3 -->
+<!-- Conectores RJ-45 de cuatro canales -->
+<!-- 2 -->
+<!-- Cristal Miniatura de 20 Mhz  -->
+<!-- 1 -->
+<!-- Led Rojo Standar  -->
+<!-- 1 -->
+<!-- Led Verde Standar  -->
+<!-- 1 -->
+<!-- HCF4054 IC MANEJADORES DE DISPLAYS DE CRISTAL LIQUIDO -->
+<!-- 2 -->
+<!-- HCF4066 IC SWITCH BILATERAL CUADRUPLE  -->
+<!-- 8 -->
+<!-- Max232  -->
+<!-- 1 -->
+<!-- Max485  -->
+<!-- 1 -->
+<!-- PIC 18F4550  -->
+<!-- 1 -->
+<!-- Pulsador 12  -->
+<!-- 1 -->
+<!-- Resistencias de 1/4W  -->
+
+<!-- 120 -->
+<!-- 8 -->
+<!-- 330 -->
+<!-- 10 -->
+<!-- 680 -->
+<!-- 6 -->
+<!-- 1k -->
+<!-- 10 -->
+<!-- 10k -->
+<!-- 1 -->
+<!-- TRANSISTOR 2n3904  -->
+<!-- 2 -->
+<!-- Trimmer Vertical Multi vuelta de 1k  -->
+<!-- 3 -->
+
+</sect2>
+</sect1>
+
+<simplesect>
+  <title>Conclusiones</title>
+  <orderedlist>
+    <title>Del presente proyecto se llegaron a las siguientes
+    conclusiones:</title>
+    <listitem>
+      <para>
+	Se reemplazaron los sistemas de las tarjetas que presentan
+	tecnología obsoleta y analógica principalmente representada por los
+	transistores para el multiplexado de las señales de video por
+	circuitos integrados digitales como losHCF4066 controlados por
+	circuitos integrados inteligentes como el PIC16F628A y PIC18F4550.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+	Se mejoraró la comunicación entre la Tarjeta Central con el
+	computador vía Rs-232 y entre la Tarjeta central con las Tarjetas
+	de Disparo vía RS-485 mediante el uso de los circuitos intregrador
+	MAX232 y MAX485 cuyo funcionamiento también está controlado por
+	los PIC16F628A y PIC18F4550.
+	</para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Se reemplazar los potenciómetros de calibración por
+	    circuitos más confiables y robustos. La señal de reloj se
+	    genera por los cristales osciladores de 20Hhz que le
+	    permiten a los microcontroladores la ejecución confiable y
+	    correcta de sus programas de control.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Se mejoró la calidad de las imágenes y la disminución del ruido de
+	    las cámaras de video mediante el uso del amplificador operacional
+	    de video LT1254 y la posibilidad de ajustar el brillo de las
+	    imágenes.
+	  </para>
+	</listitem>
+  </orderedlist>
+</simplesect>
+
+<simplesect>
+  <title>
+    Tarjeta Fuente
+  </title>
+  <para>
+    Se diseñó una fuente de voltaje que convierte los 120Vrms de la
+    red doméstica en +5Vdc y -5Vdc para alimentar a la Tarjeta
+    Central.
+  </para>
+</simplesect>
+
+
+</appendix>
+

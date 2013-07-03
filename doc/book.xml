@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<book xmlns="http://docbook.org/ns/docbook" 
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="5.0" 
+      xml:lang="es">
+  
+  <info>
+    <title><productname>Digicheck2</productname></title>
+    <subtitle>Documentación Técnica</subtitle>
+    <author>
+      <personname>
+	<firstname>Alberto</firstname>
+	<surname>Mijares</surname>
+	<email>amijares@mcs.com.ve</email>
+      </personname>
+      <affiliation>
+	<orgname>Mijares Consultoría y Sistemas SL</orgname>
+	<jobtitle>Consultor Especialista</jobtitle>
+	<email>amijares@mcs.com.ve</email>
+      </affiliation>
+    </author>
+    <copyright>
+      <year>2012</year>
+      <year>2013</year>
+      <holder>Mijares Consultoría y Sistemas SL</holder>
+    </copyright>
+  </info>
+  <xi:include href="acerca.xml"/>
+  <xi:include href="general.xml"/> 
+  <xi:include href="instalacion.xml"/>      
+  <xi:include href="informe-carlos.xml"/> 
+</book>
