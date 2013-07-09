@@ -188,6 +188,15 @@
       programas.
     </para>
 
+    <para>
+      El directorio <emphasis>raíz</emphasis> de todas las
+      aplicaciones es <filename
+      class="directory">/home/bayco/digick</filename>, por lo que
+      todas las rutas a archivos y directorios que mencionemos,
+      referentes al software desarrollado, serán relativas a ese
+      punto.
+    </para>
+
     <sect2>
       <title>serial.pl</title>
       <para>
