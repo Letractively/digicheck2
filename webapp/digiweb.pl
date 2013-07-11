@@ -4,17 +4,25 @@ use Mojolicious::Lite;
 use DateTime::Format::Pg;
 use Imager;
 use Digest::MD5 'md5_hex';
-use lib '/home/bayco/digicheck/trunk/webapp';
+# use lib '/home/bayco/digicheck/trunk/webapp';
 use DigiDBD;
 use DigiZip;
 
-plugin 'basic_auth';
+plugin 'basic_auth_plus';
+
+my $ldapcfg = new Config::Simple('ldap.cfg');
 
 under sub {
     my $self = shift;
     return 1 if ($self->basic_auth(
-		     realm => sub {return 1 if "@_" eq 'caroni1 caroniadmin'}
-		 )
+		     "Ingrese su Usuario y Clave" => {
+			 host   => $ldapcfg->param('host'),
+			 basedn => $ldapcfg->param('basedn'),
+			 binddn => $ldapcfg->param('binddn'),
+			 bindpw => $ldapcfg->param('bindpw'),
+			 filter => $ldapcfg->param('filter')
+		     }
+		 );
 	);
 };
 
