@@ -22,7 +22,7 @@ under sub {
 			 bindpw => $ldapcfg->param('bindpw'),
 			 filter => $ldapcfg->param('filter')
 		     }
-		 );
+		 )
 	);
 };
 
