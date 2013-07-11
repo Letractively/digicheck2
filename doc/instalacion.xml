@@ -1,11 +1,145 @@
-<chapter xml:id="instalacion">
-  <title>Manual de Instalación de Digicheck2</title>
-  <sect1>
-    <title>Preparación del ambiente de instalación</title>
+<chapter xml:id="instalacion"
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Manual de Instalación</title>
+  <sect1 xml:id="inst.hardware">
+    <title>Requisitos de Hardware</title>
     <para>
-      Para instalar el software de Digicheck2 en un equipo se debe
-      contar con un ambiente similar al ambiente de producción.
+      Aunque <productname>Digicheck2</productname> está pensando para
+      que sea comercializado como un
+      <foreignphrase>appliance</foreignphrase>, también es cierto que
+      el CD de instalación podría usarse para convertir cualquier
+      computador en un Digicheck2. Para ello, deben cumplirse algunos
+      requisitos de hardware y los enumeramos a continuación:
+    </para>
+    <itemizedlist>
+      <listitem>
+	<para>
+	  Procesador compatible con la arquitectura Intel x86_64
+	  (amd64), de 1.6 GHz o superior.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  1 GB de RAM como mínimo.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  2 discos duros SATA con una capacidad mímina de 160 GB.
+	</para>
+	<note>
+	  <para>
+	    Si el sistema no cuenta con dos discos en el momento de la
+	    instalación, el proceso de instalación en sí fallará y no
+	    podrá completarse. Es importante que ambos discos sean de
+	    la misma capacidad y, de ser posible, la misma marca y
+	    modelo; y que estén instalados en la primera y segunda
+	    controladora, respectivamente.
+	  </para>
+	</note>
+      </listitem>
+    <listitem>
+      <para>
+	1 puerto serial (RS-232).
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+	Tarjeta de red<footnote xml:id="fn.lc"><para>Compatible con
+	Debian GNU/Linux 6.0</para></footnote> ethernet.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+	Tarjeta Capturadora de Video.
+      </para>
+      <note>
+	<para>
+	  Digicheck2 fue diseñado para utilizar la tarjeta LE-380,
+	  pero podría funcionar con cualquier otra capturadora siempre
+	  y cuando sea compatible con el sistema operativo
+	  subyacente<footnoteref linkend="fn.lc"/>
+	</para>
+      </note>
+    </listitem>
+    </itemizedlist>
+    <para>
+      Pueden encontrar toda una lista de dispositivos soportados en
+      Debian en <link
+      xlink:href="http://wiki.debian.org/Hardware">wiki.debian.org/Hardware</link>
     </para>
   </sect1>
 
+  <sect1 xml:id="inst.servicios">
+    <title>Servicios Requeridos</title>
+    <para>
+      Hay algunos servicios de red que resultan necesarios para que el
+      proceso de instalación se lleve de manera adecuada. Por los
+      momentos no son muchos y los listamos a continuación:
+    </para>
+    <itemizedlist>
+      <listitem>
+	<para>
+	  Servidor NTP para la sincronización de la hora en el sistema.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Servidores DNS para la resolución de nombres.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Servicio de Puerta de Enlace
+	  (<foreignphrase>gateway</foreignphrase>).
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Servicio de Directorio (por ejemplo <trademark>Active
+	  Directory</trademark>).
+	</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+
+  <sect1 xml:id="inst.preparacion">
+    <title>Preparación del ambiente de instalación</title>
+    <para>
+      La instalación desde el CD está pensada para que ocurra en el
+      mismo ambiente en el cual se pondrá en producción. Es por esta
+      razón que, cuando no sea posible realizar la instalación en el
+      sitio y se deba pre-instalar, debemos contar con un ambiente
+      similar.
+    </para>
+    <para>
+      Para lograr esto debemos contar con una red en el mismo espacio
+      de direcciones que la red destino; es decir, suponiendo que se
+      el debe asignar el IP <systemitem
+      class="ipaddress">10.200.21.6</systemitem>, con la máscara de
+      red <systemitem class="netmask">255.255.0.0</systemitem>, es
+      necesario que lógicamente se configure de esa misma forma la red
+      donde se hará la instalación.
+    </para>
+    <para>
+      De la misma forma, las direcciones IP de los servicios
+      requeridos, y mencionados en <xref linkend="inst.servicios"/>,
+      deben existir y funcionar adecuadamente. De lo contrario, el
+      proceso de instalación podría abortar y el sistema no quedará
+      listo para funcionar.
+    </para>
+    <para>
+      Es posible realizar la instalación sin que se simule un servicio
+      de directorio; sin embargo, es un requerimiento para el proceso
+      de autenticación que se lleva a cabo para la visualización de
+      las imágenes. En este sentido, si se desea comprobar que después
+      de la instalación todo funciona bien, se debe contar con este
+      servicio y haber configurado correctamente el arbol del
+      directorio como si se tratara del arbol del directorio donde se
+      prondrá en producción.
+    </para>
+
+
+  </sect1> 
 </chapter>

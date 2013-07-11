@@ -1,4 +1,5 @@
-<preface xml:id="acerca">
+<preface xml:id="acerca" 
+	 xmlns:xlink="http://www.w3.org/1999/xlink">
   <title>
     Acerca de este Documento
   </title>
@@ -55,4 +56,75 @@
     sencillo adaptar el sistema a otros casos de uso, de acuerdo a
     las exigencias de cada cliente.
   </para>
+  <sect1>
+    <title>Versiones</title>
+    <para>
+      Existe una versión web y una versión PDF de este documento. La
+      principal razón es poder brindar la facilidad de que pueda ser
+      impreso y leido desde la web sin mayores contratiempo.
+    </para>
+    <para>
+      La versión web será más cómoda para navegar los enlaces internos
+      y externos; así como para vializar las imágenes en su tamaño
+      original y apreciar detalles que tal vez no se parecien en la
+      edición PDF. La versión PDF es maś cómoda leerla si se desea
+      imprimir y no depender de artefactos electrónicos.
+    </para>
+  </sect1>
+  <sect1>
+    <title>Marcas Registradas</title>
+    <para>
+      A lo largo del documento haremos mención de algunas marcar
+      registradas. Queremos hacer mención de algunas de ellas de
+      antemano, con el fin de eliminar cualquier intento de relacionar
+      este producto, su empresa patrocinante o la empresa
+      desarrolladora con alguna de estas marcar.
+    </para>
+    <itemizedlist>
+      <listitem>
+	<para>
+	  <trademark>Debian</trademark> es una marca registrada por el
+	  Proyecto <link
+	  xlink:href="http://www.debian.org">Debian</link> en Estados
+	  Unidos, la Unión Europea, China, Japón y Brasil. Para mayor
+	  información ver <link
+	  xlink:href="http://www.debian.org/trademark">www.debian.org/trademark</link>.
+	</para>
+      </listitem>
+    <listitem>
+      <para>
+	<trademark>Linux</trademark> es una marca registrada por Linus
+	Torvalds y protegida por la <link
+	xlink:href="http://www.linuxfoundation.org/programs/legal/trademark">Linux
+	Foundation</link>.
+      </para>
+    </listitem>
+      
+    </itemizedlist>
+    </sect1>
+
+    <sect1>
+      <title>Elaboración</title>
+      <para>
+	Este documento ha sido elaborado con tecnologías libres y
+	herramientas profesionales para la edición de documentos y
+	manuales técnicos. <link
+	xlink:href="http://www.docbook.org">Docbook</link> (versión
+	5.0) es el nombre del esquema que hemos empleado para armar su
+	estructura y para el etiquetado de los elementos, <link
+	xlink:href="http://www.gnu.org/software/emacs">Emacs</link>
+	para su edición en texto plano y herramientas como
+	<productname>Apache FOP</productname> para compilar el archivo
+	en formato PDF y <command>xsltproc</command> para general los
+	archivos HTML y FO.
+      </para>
+      <para>
+	Los archivos en formato XML, así como las imágenes en formato
+	PNG, que dan origen a este documento, pueden encontrarse junto
+	al código fuente del software de
+	<productname>Digicheck2</productname> dentro del CD de
+	instalación o en el repositorio.
+      </para>
+    </sect1>
+
 </preface> 

@@ -1023,7 +1023,17 @@
   control del PIC18F4550 de 5V y 0V a +5V y -5V para poder manejar los
   switches analógicos correctamente (ver Figura 25).
 </para>
-<!-- Figura 25: Circuitos Integrados U1 y U12. -->
+<figure xml:id="inf.fig25">
+  <title>Circuitos Integrados U1 y U12</title>
+  <mediaobject>
+    <imageobject condition="web">
+      <imagedata fileref="img/png/INFORME_html_69de5630.png" scale="80"/>
+    </imageobject>
+    <imageobject condition="print">
+      <imagedata fileref="img/png/INFORME_html_69de5630.png" scale="30"/>
+    </imageobject>
+  </mediaobject>
+</figure>
 <para>
   El circuito integrado LT1254 (U11) es un amplificador de video. Se
   encarga de amplificar las señales de video de las cámaras de
@@ -1041,8 +1051,18 @@
   controlas el brillo en las señales de video que se envían a la
   tarjeta de captura de video.
 </para>
-
-<!-- Figura 26: Circuito integrado U11, capacitor C10, resistencias R10, R11, R12, R13, R14 y R15 y potenciómetros RV1, RV2 y RV3. -->
+<figure xml:id="inf.fig26">
+  <title>Circuito integrado U11, capacitor C10, resistencias R10, R11,
+  R12, R13, R14 y R15 y potenciómetros RV1, RV2 y RV3</title>
+  <mediaobject>
+    <imageobject condition="web">
+      <imagedata fileref="img/png/INFORME_html_38c74624.png" scale="80"/>
+    </imageobject>
+    <imageobject condition="print">
+      <imagedata fileref="img/png/INFORME_html_38c74624.png" scale="30"/>
+    </imageobject>
+  </mediaobject>
+</figure>
 <para>
   El conjunto transistores npn 2N3904 (Q1 y Q2), leds D1 (verde) y D2
   (Rojo), resistencias R17, R18 (330ohm), R19, R20 (1kohm) se encargan
@@ -1051,85 +1071,206 @@
   disparo. Cuando el led rojo esta encendido la Tarjeta Central está
   ocupada multiplexando las señales de video (ver Figura 27).
 </para>
-<!-- Figura 27: Transistores Q1, Q2, resistencias R17, R18, R19, R20 y leds D1, D2. -->
+<figure xml:id="inf.fig27">
+  <title>Transistores Q1, Q2, resistencias R17, R18, R19, R20 y leds D1,
+  D2</title>
+  <mediaobject>
+    <imageobject condition="web">
+      <imagedata fileref="img/png/INFORME_html_b668725.png" scale="80"/>
+    </imageobject>
+    <imageobject condition="print">
+      <imagedata fileref="img/png/INFORME_html_b668725.png" scale="30"/>
+    </imageobject>
+  </mediaobject>
+</figure>  
 <para>
   El PIC18F4550 (U***1) contiene el programa de control de la Tarjeta
   Central. Este controla las comunicaciones RS-485 con las Tarjetas de
   Disparo y RS-232 con el computador, la habilitación o
   deshabilitación de los switches de video para el multiplexado de
   estas señales y el encendido y apagado de los leds indicadores del
-  estado de la toma de fotos (ver Figura 28).
+  estado de la toma de fotos (ver <xref linkend="inf.fig28"/>).
 </para>
-<!-- Figura 28: Circuito integrado U***1. -->
-
-
-<!-- El programa del PIC18f4550 se explica a continuación: -->
-<!-- 1. Se configuran los puertos de entradas y salidas digitales. -->
-<!-- 2. Se configura el módulo EUSART para la comunicación RS-232 con el computador. -->
-<!-- 3. Se hace un retardo en el arranque para que las señales de entrada y salida se estabilicen y no generen falso pulsos o funcionamiento incorrecto de las tarjetas. -->
-<!-- 4. Se entra en el laso while infinito donde se ejecutan las instrucciones más importantes del programa. -->
-<!-- 4.1. El programa revisa secuencialmente los pines destinado a la recepción de datos vía RS-485 (RB1, RB3, RB5, RB7, RD0, RD3, RD5, RD7 para los porta cámaras H, G, F, E, D, C, B, A respectivamente) en búsqueda de un pulso enviado por las Tarjetas de Disparo. -->
-<!-- 4.2. En el caso de recibir un pulso se enciende el led rojo, se apaga el verde y se activa la salida digital del micro que habilita el paso de las señales de video por el respectivo canal. -->
-<!-- 4.3. Se produce un retraso de 1000mseg para que la señal pueda ser obtenida por la tarjeta de captura de video. -->
-<!-- 4.4. Se envía un carácter (a, b, c, d, e, f, g, h) que le indica al sistema en Linux a cual porta cámaras pertenecen las señales de video. -->
-<!-- 4.5. Se espera el reconocimiento por el sistema Linux  el cual envía una instrucción de reconocimiento (ack=0x06) para que el programa del PIC18F4550 continúe con su ejecución. -->
-<!-- 4.6. Se produce otro retraso de 1000mseg para que efectivamente las imágenes puedan ser capturadas. -->
-<!-- 4.7. El MAX485 se coloca en modo transmisión. Se envía el pulso de retorno a la Tarjeta de Disparo. -->
-<!-- 4.8. El MAX485regresa a su modo de recepción para poder atender los futuros pulsos de captura de fotos. -->
-<!-- 4.9. Se enciende el led verde y se apaga el rojo. -->
-<!-- 5. Se continúa con el escaneo del resto de las entradas. El proceso descrito en el punto 4 es el mismo para todos los canales de la tarjeta central. -->
-
-<!-- La lista con las conexiones del PIC18F4550 se muestra en la Tabla 8. -->
-
-<!-- Tabla 8: Conexiones de los pines del  PIC18F4550. -->
-<!-- PIN -->
-<!-- NOMBRE  -->
-<!-- TIPO -->
-<!-- FUNCIÓN -->
-<!-- 1 -->
-<!-- MCLR -->
-
-<!-- Reset por pulsador interno. -->
-<!-- 2 -->
-<!-- RA0 -->
-<!-- Salida Digital. -->
-<!-- Activa el Led Verde. -->
-<!-- 3 -->
-<!-- RA1 -->
-<!-- Salida Digital. -->
-<!-- Activa el Led Rojo. -->
-<!-- 4 -->
-<!-- RA2 -->
-
-
-<!-- 5 -->
-<!-- RA3 -->
-<!-- Salida Digital. -->
-<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras H. -->
-<!-- 6 -->
-<!-- RA4 -->
-<!-- Salida Digital. -->
-<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras G. -->
-<!-- 7 -->
-<!-- RA5 -->
-<!-- Salida Digital. -->
-<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras F. -->
-<!-- 8 -->
-<!-- RE0 -->
-<!-- Salida Digital. -->
-<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras E. -->
-<!-- 9 -->
-<!-- RE1 -->
-<!-- Salida Digital. -->
-<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras D. -->
-<!-- 10 -->
-<!-- RE2 -->
-<!-- Salida Digital. -->
-<!-- Habilita el Switch Analógico HCF4066 mediante el cambiador de niveles lógicos HCF4054 para el Porta Cámaras C. -->
-<!-- 11 -->
-<!-- Vdd -->
-
-<!-- Conexión a +5V. -->
+<figure xml:id="inf.fig28">
+  <title>Circuito integrado U***1</title>
+  <mediaobject>
+    <imageobject condition="web">
+      <imagedata fileref="img/png/INFORME_html_44af4841.png" scale="80"/>
+    </imageobject>
+    <imageobject condition="print">
+      <imagedata fileref="img/png/INFORME_html_44af4841.png" scale="30"/>
+    </imageobject>
+  </mediaobject>
+</figure>
+<orderedlist>
+  <title>El programa del PIC18f4550 se explica a continuación:</title>
+  <listitem>
+    <para>
+      Se configuran los puertos de entradas y salidas digitales.
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      Se configura el módulo EUSART para la comunicación RS-232 con el
+      computador.  
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      Se hace un retardo en el arranque para que las señales de
+      entrada y salida se estabilicen y no generen falso pulsos o
+      funcionamiento incorrecto de las tarjetas.
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      Se entra en el laso while infinito donde se ejecutan las
+      instrucciones más importantes del programa:
+    </para>
+    <orderedlist>
+      <listitem>
+	<para>
+	  El programa revisa secuencialmente los pines destinado a la
+	  recepción de datos vía RS-485 (RB1, RB3, RB5, RB7, RD0, RD3,
+	  RD5, RD7 para los porta cámaras H, G, F, E, D, C, B, A
+	  respectivamente) en búsqueda de un pulso enviado por las
+	  Tarjetas de Disparo.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  En el caso de recibir un pulso se enciende el led rojo, se
+	  apaga el verde y se activa la salida digital del micro que
+	  habilita el paso de las señales de video por el respectivo
+	  canal.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Se produce un retraso de 1000mseg para que la señal pueda ser
+	  obtenida por la tarjeta de captura de video.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Se envía un carácter (a, b, c, d, e, f, g, h) que le indica al
+	  sistema en Linux a cual porta cámaras pertenecen las señales
+	  de video.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Se espera el reconocimiento por el sistema Linux el cual envía
+	  una instrucción de reconocimiento (ack=0x06) para que el
+	  programa del PIC18F4550 continúe con su ejecución.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Se produce otro retraso de 1000mseg para que efectivamente las
+	  imágenes puedan ser capturadas.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  El MAX485 se coloca en modo transmisión. Se envía el pulso de
+	  retorno a la Tarjeta de Disparo.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  El MAX485regresa a su modo de recepción para poder atender
+	  los futuros pulsos de captura de fotos.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Se enciende el led verde y se apaga el rojo.
+	</para>
+      </listitem>
+    </orderedlist>
+  </listitem>
+  <listitem>
+    <para>
+      Se continúa con el escaneo del resto de las entradas. El proceso
+      descrito en el punto 4 es el mismo para todos los canales de la
+      tarjeta central.
+    </para>
+  </listitem>
+</orderedlist>
+<para>
+  La lista con las conexiones del PIC18F4550 se muestra en <xref
+  linkend="tabla.pines.pic"/>.
+</para>
+<table xml:id="tabla.pines.pic">
+  <title>Conexiones de los pines del  PIC18F4550</title>
+  <tgroup cols="4" align="center">
+    <colspec colnum="1" colwidth="25"/>
+    <colspec colnum="2" colwidth="35"/>
+    <colspec colnum="3" colwidth="60"/>
+    <thead>
+      <row>
+	<entry>PIN</entry><entry>Nombre</entry>
+	<entry>Tipo</entry><entry>Función</entry>
+      </row>
+    </thead>
+    <tbody>
+      <row>
+	<entry>1</entry><entry>MCLR</entry><entry></entry>
+	<entry>Reset por pulsador interno</entry>
+      </row>
+      <row>
+	<entry>2</entry><entry>RA0</entry><entry>Salida Digital</entry>
+	<entry>Activa el Led Verde</entry>
+      </row>
+      <row>
+	<entry>3</entry><entry>RA1</entry><entry>Salida Digital</entry>
+	<entry>Activa el Led Rojo</entry>
+      </row>
+      <row>
+	<entry>4</entry><entry>RA2</entry>
+	<entry></entry><entry></entry>
+      </row>
+      <row>
+	<entry>5</entry><entry>RA3</entry><entry>Salida Digital</entry>
+	<entry>Habilita el Switch Analógico HCF4066 mediante el
+	cambiador de niveles lógicos HCF4054 para el Porta Cámaras H
+	</entry>
+      </row>
+      <row>
+	<entry>6</entry><entry>RA4</entry><entry>Salida Digital</entry>
+	<entry>Habilita el Switch Analógico HCF4066 mediante el
+	cambiador de niveles lógicos HCF4054 para el Porta Cámaras G
+	</entry>
+      </row>
+      <row>
+	<entry>7</entry><entry>RA5</entry><entry>Salida Digital</entry>
+	<entry>Habilita el Switch Analógico HCF4066 mediante el
+	cambiador de niveles lógicos HCF4054 para el Porta Cámaras F
+	</entry>
+      </row>
+      <row>
+	<entry>8</entry><entry>RE0</entry><entry>Salida Digital</entry>
+      <entry>Habilita el Switch Analógico HCF4066 mediante el
+      cambiador de niveles lógicos HCF4054 para el Porta Cámaras E
+      </entry>
+      </row>
+      <row>
+	<entry>9</entry><entry>RE1</entry><entry>Salida Digital</entry>
+	<entry>Habilita el Switch Analógico HCF4066 mediante el
+	cambiador de niveles lógicos HCF4054 para el Porta Cámaras D
+	</entry>
+      </row>
+      <row>
+	<entry>10</entry><entry>RE2</entry><entry>Salida Digital</entry>
+	<entry>Habilita el Switch Analógico HCF4066 mediante el
+	cambiador de niveles lógicos HCF4054 para el Porta Cámaras C
+	</entry>
+      </row>
+      <row>
+	<entry>11</entry><entry>Vdd</entry><entry></entry>
+	<entry>Conexión a +5V</entry>
+      </row>
 <!-- 12 -->
 <!-- Vss -->
 
@@ -1247,26 +1388,59 @@
 <!-- Entrada Digital. -->
 <!-- Conexión con el pin de recepción (RE) del MAX-485 (U3/Porta Cámaras A). -->
 
-<!-- La circuitería mínima que requiere el Pic16f628A para su correcto funcionamiento es la siguiente: -->
-
-<!-- Resistencia R1 (10Kohm/1/4W) y Pulsador SW1. Para reset por hardware (ver Figura 29). -->
-
-
-<!-- Figura 29: Resistencia R1 y pulsador SW1. -->
-
-
-<!-- Cristal oscilador X1 (20MHz) y capacitores C2 y C8 de 15pF. Genera la señal de reloj  Para que el PIC18F4550 pueda realizar sus tareas programadas (ver Figura 30). -->
-
-<!-- Figura 30: Cristal X1 y capacitores cerámicos C2 y C8. -->
+</tbody>
+</tgroup>
+</table>
+  
+<itemizedlist>
+  <title>La circuitería mínima que requiere el Pic16f628A para su
+  correcto funcionamiento es la siguiente:</title>
+  <listitem>
+    <para>
+      Resistencia R1 (10Kohm/1/4W) y Pulsador SW1. Para reset por
+      hardware (ver <xref linkend="inf.fig29"/>).
+      </para>
+      <figure xml:id="inf.fig29">
+	<title>Resistencia R1 y pulsador SW1</title>
+	<mediaobject>
+	  <imageobject condition="web">
+	    <imagedata fileref="img/png/INFORME_html_b668725.png" scale="80"/>
+	  </imageobject>
+	  <imageobject condition="print">
+	    <imagedata fileref="img/png/INFORME_html_b668725.png" scale="30"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+  </listitem>
+  <listitem>
+    <para>
+      Cristal oscilador X1 (20MHz) y capacitores C2 y C8 de
+      15pF. Genera la señal de reloj Para que el PIC18F4550 pueda
+      realizar sus tareas programadas (ver <xref linkend="inf.fig30"/>).
+    </para>
+    <figure xml:id="inf.fig30">
+      <title>Cristal X1 y capacitores cerámicos C2 y C8</title>
+      <mediaobject>
+	<imageobject condition="web">
+	  <imagedata fileref="img/png/INFORME_html_m63fd9653.png" scale="80"/>
+	</imageobject>
+	<imageobject condition="print">
+	  <imagedata fileref="img/png/INFORME_html_m63fd9653.png" scale="30"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+  </listitem>
+</itemizedlist>
 
 </sect2>
 
 
 <sect2>
-
-<!-- 3.2. Lista de componentes de la Tarjeta Central. -->
-
-<!-- La lista de componentes de la Tarjeta Central se muestra en la Tabla 9. -->
+  <title>Lista de componentes de la Tarjeta Central</title>
+  <para>
+    La lista de componentes de la Tarjeta Central se muestra en la
+    Tabla 9.
+  </para>
 
 <!-- Tabla 9: Lista de componentes de la Tarjeta Central. -->
 <!-- Nombre -->

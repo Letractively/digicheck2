@@ -16,7 +16,7 @@ sub write_config_file {
     my $self = shift;
     my $dev = shift;
     my $serial = new Device::SerialPort($dev);
-    $serial->baudrate(115200);
+    $serial->baudrate(9600);
     $serial->parity('none');
     $serial->databits(8);
     $serial->stopbits(0);
