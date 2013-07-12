@@ -3,6 +3,7 @@
 use Mojolicious::Lite;
 use DateTime::Format::Pg;
 use Imager;
+use Config::Simple;
 use Digest::MD5 'md5_hex';
 # use lib '/home/bayco/digicheck/trunk/webapp';
 use DigiDBD;
