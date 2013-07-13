@@ -55,9 +55,10 @@ sub start {
 	if ($buffer) {
 	    
 	    if ($self->valid($buffer)) {
-		print 'dice: ', $buffer, "\n";
-		print 'ord: ', ord $buffer, "\n";
+		# print 'dice: ', $buffer, "\n";
+		# print 'ord: ', ord $buffer, "\n";
 		$self->send($self->transform($buffer));
+		$serial->write(chr(6)); # enviamos confirmacion
 		last;
 	    }
 	    else {

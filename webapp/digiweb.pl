@@ -134,7 +134,7 @@ get '/zip/(:id).zip' => sub {
 
     my $zip = $file->compress($img1, $img2, $img3, $csum1, $csum2, $csum3, $ts, $caja);
 
-    $self->render(data => $zip, type => 'zip');
+    $self->render(data => $zip, format => 'zip');
 };
 
 

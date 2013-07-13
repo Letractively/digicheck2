@@ -55,7 +55,7 @@ my $caja = $line;
 
 if ($line) {
     
-    print "Client Sez: $line\n";
+#    print "Client Sez: $line\n";
     
     for my $f (0, 1) {
 	$frame0 = $grab0->capture(1 - $f, 640, 480);
