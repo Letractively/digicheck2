@@ -142,4 +142,441 @@
 
 
   </sect1> 
+
+<sect1>
+  <title>Instalación</title>
+  <para>
+    El proceso de instalación se lleva a cabo en dos fases: en la
+    primera fase se instala el sistema operativo y un conjunto de
+    herramientas que llamaremos <emphasis>Sistema
+    Base</emphasis>. Para esta primera fase se emplean utilitarios
+    nativos de Debian, como lo es el instalador
+    <application>debian-installer</application>. A pesar de que el
+    sistema operativo queda completamente instalado, esto no es
+    suficiente para que Digicheck2 funcione; la segunda fase del
+    proceso de instalación es igual de importante y se le debe prestar
+    mayor atención, ya que es en esta fase donde existen mayores
+    probabilidades de cometer errores.
+  </para>
+  <para>
+    En la segunda fase, se llevan a cabo algunas acciones de manera
+    automática como la instalación de las aplicaciones que componene
+    Digicheck2, la configuración de la base de datos, la compilación y
+    carga del driver para la capturadora de video, etc. También se
+    llevan a cabo algunas acciones que requieren la intervención de un
+    operador, ya que no pueden ser automatizadas. 
+  </para>
+  <important>
+    <para>
+      Se debe disponer de toda la información requerida al alcance de
+      la mano cuando se esté realizando una instalación; y esta
+      información debe haber sido confirmada para evitar retrasos, ya
+      que configurar el equipo con datos erróneos puede hacer que
+      el sistema quede en un estado inoperable por no estar
+      configurado adecuadamente para determinado ambiente.
+    </para>
+  </important>
+  <sect2>
+    <title>Primera Fase</title>
+    <para>
+      Como ya hemos dicho, la primera fase consiste en la instalación
+      del sistema operativo. El proceso ha sido automatizado en la
+      medida de lo posible, pero hay cosas que no pueden ser
+      automatizadas y requieren intervención del operador. A
+      continuación explicamos qué información se debe suministrar en
+      esta fase.
+    </para>
+    <note>
+      <para>
+	El equipo dbe estar configurado para que el primer dispositivo
+	de arranque sea el CD. El CD de instalación entregado es el
+	único medio de instalación que se puede emplear; no se puede
+	realizar la instalación haciendo imágenes de disco o
+	trasladando el instalador a un
+	<foreignphrase>pendrive</foreignphrase>.
+      </para>
+    </note>
+    <itemizedlist>
+      <listitem>
+	<para>
+	  Cuando inicie el programa de instalación veremos una imagen que
+	  identifica a BAYCO, C.A. como propietario del producto, y a
+	  Mijares Consultoría y Sistemas SL como desarrolladores del mismo
+	  (ver <xref linkend="fig.screen1"/>). Presionar
+	  <keycap>Enter</keycap>.
+	</para>
+	<figure xml:id="fig.screen1">
+	  <title>Primera pantalla del instalador</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/screen1.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/screen1.png" scale="45"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </listitem>
+      <listitem>
+	<para>
+	  La primera pantalla de selección es para el idioma del
+	  sistema. Se debe seleccionar
+	  <userinput>English</userinput>. Es la opción que está
+	  seleccionada por defecto, por lo que basta con presionar
+	  <keycap>Enter</keycap> (ver <xref linkend="fig.idioma"/>.
+	</para>
+	<figure xml:id="fig.idioma">
+	  <title>Seleccionar idioma</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/idioma.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/idioma.png" scale="45"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </listitem>
+      <listitem>
+	<para>
+	  Seleccionar la ubicación para la zona horaria (ver <xref
+	  linkend="fig.location"/>). En esta primera pantalla
+	  seleccionamos <userinput>other</userinput>.
+	</para>
+	<figure xml:id="fig.location">
+	  <title>Localización General</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/location.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/location.png" scale="45"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </listitem>
+      <listitem>
+	<para>
+	  Luego seleccionamos la región <userinput>South
+	  America</userinput> y presionamos <keycap>Enter</keycap>
+	  (ver <xref linkend="fig.location2"/>).
+	</para>
+	<figure xml:id="fig.location2">
+	  <title>Localización Región</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/location2.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/location2.png" scale="45"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </listitem>
+      <listitem>
+      <para>
+	Por último, para terminar de seleccionar la localización del
+	sistema, elegimos <userinput>Venezuela</userinput> (ver <xref
+	linkend="fig.location3"/>).
+      </para>
+      <figure xml:id="fig.location3">
+	<title>Localización País</title>
+	<mediaobject>
+	  <imageobject condition="web">
+	    <imagedata fileref="img/png/location3.png" scale="80"/>
+	  </imageobject>
+	  <imageobject condition="print">
+	    <imagedata fileref="img/png/location3.png" scale="45"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      </listitem>
+      <listitem>
+	<para>
+	  A continuación, seleccionamos el
+	  <foreignphrase>locale</foreignphrase><footnote><para>Conjunto
+	  de parámetros que definen preferencias relacionadas con un
+	  país en específico</para></footnote>. Debemos seleccionar
+	  <userinput>en_US.UTF-8</userinput> y presionar
+	  <keycap>Enter</keycap> (ver <xref
+	  linkend="fig.locale"/>). Durante otra fase del proceso se
+	  seleccionará el <foreignphrase>locale</foreignphrase>
+	  adecuado para Venezuela, pero ese paso está automatizado.
+	</para>
+	<figure xml:id="fig.locale">
+	  <title>Selección de locale</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/locale.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/locale.png" scale="45"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </listitem>
+      <listitem>
+	<para>
+	  Ahora seleccionamos el mapa del teclado. Esta selección debe
+	  ser hecha por el operador de acuerdo a sus necesidades. Es
+	  decir, si el teclado disponible tiene un mapa
+	  latinoamericano, debe seleccionar <userinput>Latin
+	  American</userinput>; si es español, debe seleccionar
+	  <userinput>Spanish</userinput>; y si es inglés, debe
+	  seleccionar <userinput>English</userinput> (ver <xref
+	  linkend="fig.keymap"/>).
+	</para>
+	<figure xml:id="fig.keymap">
+	  <title>Selección del mapa del teclado</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/keymap.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/keymap.png" scale="45"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </listitem>
+      <listitem>
+	<para>
+	  Introducir la dirección IP (version 4) que será asignada a
+	  este equipo. Debemos recordar que esta información debe ser
+	  suministrada por el cliente y verificada con un
+	  coordinador. El ambiente de la instalación debe ser igual al
+	  ambiente donde se pondrá en producción el equipo, como se
+	  señala en <xref linkend="inst.preparacion"/> (ver <xref
+	  linkend="fig.ipaddr"/>).
+	</para>
+	<figure xml:id="fig.ipaddr">
+	  <title>Ingresar dirección IPv4</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/ipaddr.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/ipaddr.png" scale="45"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </listitem>
+      <listitem>
+      <para>
+	Ingresar la máscara de la red (ver <xref
+	linkend="fig.netmask"/>).
+      </para>
+      <figure xml:id="fig.netmask">
+	<title>Ingresar máscara de red</title>
+	<mediaobject>
+	  <imageobject condition="web">
+	    <imagedata fileref="img/png/netmask.png" scale="80"/>
+	  </imageobject>
+	  <imageobject condition="print">
+	    <imagedata fileref="img/png/netmask.png" scale="45"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+      </listitem>
+      <listitem>
+	<para>
+	  Ingresar el IP de la puerta de enlace o
+	  <foreignphrase>gateway</foreignphrase> (ver <xref
+	  linkend="fig.gateway"/>). Aún cuando el equipo no vaya a
+	  tener acceso a internet, este parámetro debe ser indicado.
+	</para>
+	<figure xml:id="fig.gateway">
+	  <title>Ingresar IP de puerta de enlace</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/gateway.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/gateway.png" scale="45"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </listitem>
+      <listitem>
+	<para>
+	  A continuación ingresamos las direcciones IP de los DNS
+	  (generalmente son dos, pero podría ser uno solo). Podemos
+	  especificar hasta tres, separados con espacios. En <xref
+	  linkend="fig.dns"/> hay un ejemplo de cómo hacerlo.
+	</para>
+	<figure xml:id="fig.dns">
+	  <title>Ingresar IP de los DNS</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/dns.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/dns.png" scale="45"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </listitem>
+      <listitem>
+	<para>
+	  Especificar el <foreignphrase>hostname</foreignphrase> del
+	  equipo. En el caso de una agencia bancaria, es una buena
+	  idea que este nombre corresponda al nombre de la agencia; de
+	  esa forma sería fácilmente distinguible; sin embargo, son
+	  aspectos que deben ser coordinados entre BAYCO, C.A. y sus
+	  clientes, por lo que no podemos dar especificaciones en este
+	  sentido. Por defecto aparece en la pantalla
+	  <userinput>asignar-hostname</userinput>, pero este campo es
+	  editable y podemos borrar o usar las flechar del teclado
+	  para movernos y editar la información (ver <xref
+	  linkend="fig.hostname"/>).
+	</para>
+	<figure xml:id="fig.hostname">
+	  <title>Ingresar el nombre del equipo</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/hostname.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/hostname.png" scale="45"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </listitem>
+      <listitem>
+	<para>
+	  Así como el <foreignphrase>hostname</foreignphrase>, también
+	  debemos especificar un nombre de dominio de internet. Este
+	  nombre de dominio debe ser especificado por el cliente y no
+	  importa si se trata de un nombre real o
+	  ficticio. Generalmente se trata de un
+	  FQDN<footnote><para>Fully Qualified Domain
+	  Name</para></footnote> y no debe confundirse con la
+	  terminología empleada por <trademark>Active
+	  Directory</trademark>.
+	</para>
+	<figure xml:id="fig.domain">
+	  <title>Ingreso del nombre de dominio de internet</title>
+	  <mediaobject>
+	    <imageobject condition="web">
+	      <imagedata fileref="img/png/domain.png" scale="80"/>
+	    </imageobject>
+	    <imageobject condition="print">
+	      <imagedata fileref="img/png/domain.png" scale="45"/>
+	    </imageobject>
+	  </mediaobject>
+	</figure>
+      </listitem>
+      <listitem>
+	<para>
+	  El sistema completará el proceso de instalación con toda la
+	  información suministrada. No es necesaria la intervención
+	  del operador después de este punto hasta que haya
+	  finalizado. Cuando finalice, lo normal es que el mismo
+	  instalador eyecte el CD. El operador debe retirarlo para que
+	  el sistema reinicie y no vuelva a iniciar el instalador.
+	</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+  <sect2>
+    <title>Segunda Fase</title>
+    <para>
+      La segunda fase de la instalación se lleva a cabo una vez
+      finalizada la primera, de pués que el sistema reinicia. Esta
+      fase consiste en una seria de procedimientos que complementan la
+      configuración del equipo y si la cual no podría funcionar. Es
+      importante seguir los pasos aquí descritos cuidadosamente.
+    </para>
+    <para>
+      El operador debe tener el CD de instalación a la mano para esta
+      segunda fase.
+    </para>
+    <tip>
+      <para>
+	Es útil que el operador comprenda algunos conceptos básicos de
+	directorios basados en el protocolo LDAP.
+      </para>
+    </tip>
+    <itemizedlist>
+      <title>Precedimiento para la segunda fase de la
+      instalación</title>
+      <listitem>
+	<para>
+	  El sistema pedirá que se ingrese el IP del servidor de
+	  directorio:
+	</para>
+	<para><prompt>Ingrese IP del servidor de
+	Directorio:</prompt>
+	</para>
+	<para>El operador debe ingresar algo como
+	<userinput>192.168.0.34</userinput> y luego
+	presionar<keycap>Enter</keycap>.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  A continuación se pide la base de búsqueda del directorio:
+	</para>
+	<para>
+	  <prompt>Ingrese base de busqueda:</prompt>
+	</para>
+	<para>
+	  Ejemplo:
+	  <userinput>dc=bancocaroni,dc=com,dc=ve</userinput> y
+	  presionar <keycap>Enter</keycap>.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Ingresar el bind DN o usuario de aplicación, como le llaman
+	  en algunos entornos</para><para> <prompt>Ingrese el bind
+	  DN:</prompt></para><para> Ejemplo:
+	  <userinput>uid=Administrador,dc=bancocaroni,dc=com,dc=ve</userinput>
+	  y presionar <keycap>Enter</keycap>.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Ingresar la contraseña:</para><para><prompt> Ingrese la
+	  clave del bind DN:</prompt></para><para>Ejemplo:
+	  <userinput>W3erd/pQR</userinput> y presionar
+	  <keycap>Enter</keycap>.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Indicar el filtro de búsqueda en el directorio:
+	</para>
+      <para>
+	  <prompt>Ingrese el Filtro:</prompt></para><para> Ejemplo: <userinput>(&amp;(objectClass=person)(memberOf=group=supervisor,dc=bancocaroni,dc=com,dc=ve))</userinput>
+	    y presionar <keycap>Enter</keycap>.
+	  </para>
+      </listitem>
+      <listitem>
+	<para>
+	  Ingresar la IP o el nombre de dominio del servidor NTP:
+	</para>
+	<para>
+	  <prompt>Ingrese IP del servidor NTP:</prompt></para>
+	  <para>Ejemplo:
+	  <userinput>ntp.bancocaroni.com.ve</userinput> y luego
+	  presionar <keycap>Enter</keycap>.
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Por último, el sistema indicará que se ha configurado
+	  satisfactoriamente y pedirá que se retire el CD:
+	</para>
+	<para>
+	  <prompt>Retire el CD y presione Enter</prompt>. Presione
+	  <keycap>Enter</keycap>.
+	</para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      De esta forma culminamos el proceso de isntalación de
+      Digicheck2.
+    </para>
+  </sect2>
+</sect1>
 </chapter>
