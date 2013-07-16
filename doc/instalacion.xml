@@ -477,7 +477,7 @@
       </listitem>
     </itemizedlist>
   </sect2>
-  <sect2>
+  <sect2 xml:id="fase2">
     <title>Segunda Fase</title>
     <para>
       La segunda fase de la instalación se lleva a cabo una vez
@@ -538,7 +538,7 @@
 	<para>
 	  Ingresar la contraseña:</para><para><prompt> Ingrese la
 	  clave del bind DN:</prompt></para><para>Ejemplo:
-	  <userinput>W3erd/pQR</userinput> y presionar
+	  <userinput>W3erd?pQR</userinput> y presionar
 	  <keycap>Enter</keycap>.
 	</para>
       </listitem>
@@ -547,8 +547,9 @@
 	  Indicar el filtro de búsqueda en el directorio:
 	</para>
       <para>
-	  <prompt>Ingrese el Filtro:</prompt></para><para> Ejemplo: <userinput>(&amp;(objectClass=person)(memberOf=group=supervisor,dc=bancocaroni,dc=com,dc=ve))</userinput>
-	    y presionar <keycap>Enter</keycap>.
+	  <prompt>Ingrese el Filtro:</prompt></para><para> Ejemplo:
+	  <userinput>(memberOf=group=supervisor,dc=bancocaroni,dc=com,dc=ve)</userinput>
+	  y presionar <keycap>Enter</keycap>.
 	  </para>
       </listitem>
       <listitem>
@@ -574,7 +575,7 @@
       </listitem>
     </itemizedlist>
     <para>
-      De esta forma culminamos el proceso de isntalación de
+      De esta forma culminamos el proceso de instalación de
       Digicheck2.
     </para>
   </sect2>

@@ -82,34 +82,11 @@ if ($line) {
     my $pic2 = &jpeg($frame2);
 
     $obj->save2pg($$pic0, $$pic1, $$pic2, $caja);
-
+    
     
 }
 
 }
-
-
-# sub guarda {
-#     my $num = shift;
-#     my $temp;
-# # save $fr now, as it contains the raw BGR data 
-#     open (JP, '>', \$temp) or die $!;
-#     print JP "P6\n640 480\n255\n";    #header 
-#     $frame = reverse $frame;
-#     print JP $frame;
-#     close JP;
-    
-#     my $img = Imager->new();
-#     $img->read( data => $temp, type => 'pnm' )
-# 	or warn $img->errstr();
-#     $img->flip( dir => "hv" );
-#     my $img2 = $img->rotate(right=>90);
-#     $img2->write( data => \$temp, type => 'jpeg' )
-# 	or warn $img->errstr;   
-#     open JP, '>', "~/file$num.jpg" or die $!;
-#     print JP $temp;
-#     close JP;
-# }
 
 sub jpeg {
 

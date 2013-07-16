@@ -72,9 +72,9 @@ sub start {
 	    $timeout--;
 	}
 	
-	if ($timeout == 0) {
-	    warn "Nothing in 10 minutes\n";
-	}
+	# if ($timeout == 0) {
+	#     warn "Nothing in 10 minutes\n";
+	# }
 	
     }
 }

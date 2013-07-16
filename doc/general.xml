@@ -2,14 +2,12 @@
 	 xmlns:xlink="http://www.w3.org/1999/xlink">
 
   <title>Aspectos Generales del Sistema</title>
-  
   <para>
     A continuación haremos una descripción general del producto,
     explicando de una manera clara, pero sin entrar en detalles muy
     técnicos, cómo funciona el software y su interacción con el
     hardware y periféricos.
   </para>
-  
   <sect1>
     <title>Descripción</title>
     <para>
@@ -120,10 +118,8 @@
     </listitem>
     </itemizedlist>
   </sect1>
-  
   <sect1>
     <title>Sistema Operativo</title>
-
     <para>
       Digicheck2 está hecho sobre las bases del sistema operativo
       Debian GNU/Linux 6. Toda la documentación necesaria para la
@@ -179,7 +175,7 @@
     </sect2>
   </sect1>
   
-  <sect1>
+  <sect1 xml:id="software">
     <title>Software</title>
     
     <para>
@@ -191,7 +187,7 @@
     <para>
       El directorio <emphasis>raíz</emphasis> de todas las
       aplicaciones es <filename
-      class="directory">/home/bayco/digick</filename>, por lo que
+      class="directory">/home/bayco/</filename>, por lo que
       todas las rutas a archivos y directorios que mencionemos,
       referentes al software desarrollado, serán relativas a ese
       punto.
@@ -201,43 +197,235 @@
       <title>serial.pl</title>
       <para>
 	Este programa, contenido en el archivo
-	<filename>serial.pl</filename>, se encarga de la comunicación
+	<filename>captura/serial.pl</filename>, se encarga de la comunicación
 	serial entre la tarjeta central y el software de Digicheck2.
+      </para>
+      <para>
+	Cuando la tarjeta central recibe un pulso de una torre, a su
+	vez, envía un byte por el puerto serial, cuyo valor depende
+	del canal por el que recibió el
+	pulso. <filename>captura/serial.pl</filename> usa el valor de ese byte
+	para traducirlo a un número decimal (del 1 al 8) y se comunica
+	a través de un socket unix con el proceso iniciado por
+	<filename>captura/server.pl</filename>.
       </para>
     </sect2>
 
     <sect2>
-      <title>servel.pl</title>
+      <title>server.pl</title>
       <para>
-	El archivo <filename>servel.pl</filename>contiene el programa
-	que efectivamente captura la imagen desde un flujo de video,
-	la procesa para darle el formato adecuado (JPEG) y la guarda
-	en la base de datos con sus identificadores correspondientes.
+	El archivo <filename>captura/server.pl</filename>contiene el
+	programa que efectivamente captura la imagen desde un flujo de
+	video, la procesa para darle el formato adecuado (JPEG) y la
+	almacena en la base de datos junto a otros datos asociados,
+	como el número de caja donde se originó el disparo, la fecha y
+	hora, el hash MD5 de cada imagen JPEG y otros elementos para
+	el indexado.
+      </para>
+      <para>
+	El único dato recibido por el exterior es el número de caja o
+	número de torre donde se presionó el pulsador de la tarjeta de
+	disparo. Este dato lo recibe del proceso iniciado por
+	<filename>captura/serial.pl</filename> a través de una
+	comunicación via socket unix.
       </para>
     </sect2>
 
     <sect2>
       <title>digiweb.pl</title>
       <para>
-	El archivo <filename>digiweb.pl</filename> es el programa que
-	inicia la aplicación web mediante la cual se visualizan los
-	registros.
+	El archivo <filename>webapp/digiweb.pl</filename> es el
+	programa que inicia la aplicación web mediante la cual se
+	visualizan los registros. Esta aplicación está basada en el
+	framework de desarrollo <link
+	xlink:href="http://mojolicio.us">Mojolicious</link>, orientado
+	a la creación de servicios web.
       </para>
       <para>
-	Esta aplicación está basada en el framework de desarrollo
-	<link xlink:href="http://mojolicio.us">Mojolicious</link>,
-	orientado a la creación de servicios web.
+	Esta aplicación es bastante sencilla y totalmente RESTful. Se
+	ha incluido un sistema de autenticación de usuarios que se
+	integra con servicios de directorio basados en el protocolo
+	LDAP. La configuración de esta integración se lleva a cabo el
+	la segunda fase del proceso de instalación, como se puede
+	detallar en <xref linkend="fase2"/>.
+      </para>
+      <para>
+	Cuando se accede al la interfaz web para visualizar las
+	imágenes almacenadas, después de completar los criterios de
+	búsqueda, se generan vistas miniaturas en el momento para
+	mostrarlas en una pantalla de previsualización. La idea es
+	que se pueda ubicar fácilmente el registro deseado. Luego
+	podrá ver con mejor detalle las imágenes haciendo clic en el
+	botón de detalle.
+      </para>
+      <para>
+	Una consecuencia de que se genere esta miniatura al momento es
+	que cuando el conjunto de imágenes que cumplan el criterio de
+	búsqueda sea muy extenso, se podría tener la sensación de que
+	la pantalla de previsualización se genera
+	lentamente. Ciertamente, la pantalla se va generando en la
+	medida en que se van transformando las imágenes a su versión
+	miniatura, lo que podría generar cierta carga en el CPU. Las
+	razones por las que se ha hecho de esta forma son:
+      </para>
+      <orderedlist>
+	<listitem>
+	  <para>
+	    El ancho de banda disponible entre la persona que desea
+	    visualizar las imágenes y el servidor puede ser poco, y
+	    ocupar ese canal de comunicación por mucho tiempo podría
+	    entorpecer otras actividades más importantes. Por eso
+	    resulta necesario que la pantalla de previsualización
+	    contenga imágenes muy livianas que puedan ser transmitidas
+	    rápidamente a través de un canal muy limitado.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Almacenar en disco una copia en miniatura de la imagen es
+	    duplicar los datos, lo que se traduce en una utilización
+	    poco óptima de los recursos; de la misma forma, el CPU del
+	    servidor es lo suficientemente poderoso como para realizar
+	    la tarea de conversión de las imágenes en un espacio
+	    tiempo bastante razonable. No aprovechar las capacidades
+	    de cómputo del procesador también se traduciría en una
+	    subutilización de recursos.
+	  </para>
+	</listitem>
+      </orderedlist>
+      <para>
+	Como resultado, aún con conjuntos de imáganes basante grandes,
+	logramos reducir la cantidad de tráfico necesario para la
+	visualización de las imágenes y, a su vez, evitar la
+	duplicidad de datos en el disco, por lo que la capacidad de
+	almacenamiento es mayor.
       </para>
     </sect2>
+    <sect2>
+      <title>Configuración</title>
+      <para>
+	Dos archivos de configuración se crean en la segunda fase de
+	la instalación (ver <xref linkend="fase2"/>). El primero es
+	<filename>webapp/ldap.cfg</filename>, donde se indican los
+	parámetros de conexión y búsqueda contra el directorio, para
+	el proceso de autenticación de la interfaz web. El segundo es
+	<filename>.ntpserver</filename>, donde se guarda la dirección
+	IP o el nombre de dominio del servidor NTP.
+      </para>
+      <para>
+	Ambos archivos pertenecen al usuario <systemitem
+	class="username">bayco</systemitem> y pueden ser editados en
+	la cónsola.
+      </para>
+      <tip>
+	<para>
+	  El sistema operativo dispone de un editor interactivo
+	  (<application>vi</application>) y un editor en línea
+	  (<application>sed</application>) con los que se podrían
+	  llevar a cabo las tareas de edición; sin embargo, la
+	  sugerencia es que se tomen todas las precauciones en el
+	  momento de la instalación para que no sea necesario editar
+	  estos ni ningún otro archivo posteriormente.
+	</para>
+      </tip>
+    </sect2>
   </sect1>
-
   <sect1>
     <title>Base de Datos</title>
     <para>
       Digicheck2 utiliza <application>PostgreSQL</application> como
       motor de base de datos para el almacenamiento de las imágenes.
     </para>
-    
+    <para>
+      La imágenes son almacenadas en su forma binaria, usando el tipo
+      de datos BYTEA de Postgres, junto a un identificador generado de
+      manera serial y el hask MD5 de cada imagen. Cada imagen se
+      almacena en una tabla independiente.
+    </para>
+    <para>
+      Los <foreignphrase>datafiles</foreignphrase> de la base de datos
+      se encuentran en el directorio <filename
+      class="directory">/data/potgres/digick</filename>, ya que el
+      sistema de archivos montado en <filename
+      class="directory">/data</filename> es el de mayor capacidad y
+      está formateado como <systemitem
+      class="filesystem">ext4</systemitem>, a diferencia del resto de
+      los sistemas de archivo que usan los valores por defecto en
+      Debian 6.
+    </para>
+    <para>
+      El usuario propietario de la base de datos que contiene todas
+      las tablas asociadas al funcionamiento de Digicheck2 se llama
+      <systemitem class="username">digick</systemitem>.
+    </para>
+    <warning>
+      <para>
+	Postgres confía en el sistema de autenticación del sistema
+	operativo para otorgar acceso a este usuario de la base de
+	datos; es decir, no se necesita una contraseña adicional una
+	vez que se ha obtenido acceso a la cónsola del sistema
+	operativo.
+	Se debe tener extrema precaución al manipular la base de
+	datos, ya que cualquier error podría ocacionar la pérdida de
+	datos de manera irreversible o dejar el sistema en un estado
+	inoperativo.
+      </para>
+    </warning>
   </sect1>
-  
+  <sect1>
+    <title>Usuarios</title>
+    <para>
+      La gestión de usuarios del sistema en Digicheck2 funciona de la
+      misma forma que en cualquier sistema operativo basado en el
+      kernel de Linux; particularmente <systemitem
+      class="osname">Debian GNU/Linux</systemitem>, que es la base de
+      este producto.
+    </para>
+    <para>
+      El instalador crea un usuario regular por defecto, cuyo nombre
+      de usuario es <systemitem
+      class="username">bayco</systemitem>. Es bajo este usuario que se
+      ejecutan las tres aplicaciones desarrolladas que mencionamos en
+      <xref linkend="software"/>. La idea es que, de ser necesario,
+      iniciando sesión en la cónsola con este usuario, se puedan
+      gestionar los procesos necesarios para que Digicheck2
+      opere. También con este usuario podemos obtener acceso al motor
+      de base de datos.
+    </para>
+    <para>
+      La contraseña del usuario regular es: <emphasis>B4yc0user</emphasis>
+    </para>
+    <para>
+      La contraseña del superusuario será manejada por la gerencia de
+      BAYCO, C.A. y la manejará a su discreción.
+    </para>
+    <warning>
+      <para>
+	El password del superusuario debe ser manejado con mucha
+	cautela, ya que brinda la posibilidad de modificar totalmente
+	el sistema. Es importante que, de ser necesario que se le
+	otorgue a un tercero, se determine la capcidad técnica del
+	mismo y se hayan estipulado medidas preventivas en el campo
+	legal.
+      </para>
+    </warning>
+  </sect1>
+  <sect1>
+    <title>Acceso al Sistema</title>
+    <para>
+      Hay dos formas de ingresar al sistema. Ambas requieren las
+      credenciales estandar de autenticación en un sistema: usuario y
+      contraseña. El usuario debe ser un usuario existente en el
+      sistema operativo; que en el caso de Digicheck2 está
+      preconfigurado en el momento de la instalación con una
+      contraseña fija. También se podría ingresar al sistema con las
+      credenciales del superusuario.
+    </para>
+    <para>
+      Las formas de ingresar al sistema son: a través de la cónsola,
+      de manera local y a través del servicio SSH, disponible en el
+      puerto por defecto (22).
+    </para>
+  </sect1>
+    
 </chapter>

@@ -29,6 +29,7 @@
   </info>
   <xi:include href="acerca.xml"/>
   <xi:include href="general.xml"/> 
-  <xi:include href="instalacion.xml"/>      
+  <xi:include href="instalacion.xml"/>   
+  <xi:include href="faq.xml"/>
   <xi:include href="informe-carlos.xml"/> 
 </book>
