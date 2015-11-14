@@ -1,0 +1,1 @@
+Register a picture from the people's face, ID card, the check itself and fingerprint.

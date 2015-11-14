@@ -1,0 +1,3 @@
+# Introduction #
+
+This software recieves control characters via serial from a switch card. The switch card has many towers connected, and each tower has 3 video cameras (face, document ID and check) and a button. When a button is pushed, the switch card sends the video stream from this tower to a DVR card and an ID character via serial, so this software may capture the images and identify the source tower. Then, the images are estored in PostgreSQL.
